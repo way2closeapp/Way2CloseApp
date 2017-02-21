@@ -1,4 +1,5 @@
 'use strict';
+process.env.MONGOHQ_UR = 'mongodb://test1:Password@ds151279.mlab.com:51279/property';
 
 var defaultEnvConfig = require('./default');
 

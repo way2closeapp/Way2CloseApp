@@ -1,4 +1,5 @@
 'use strict';
+process.env.MONGOHQ_UR = 'mongodb://test1:Password@ds151279.mlab.com:51279/property';
 
 var fs = require('fs');
 
@@ -9,6 +10,7 @@ module.exports = {
     certificate: './config/sslcerts/cert.pem',
     caBundle: './config/sslcerts/cabundle.crt'
   },
+
   port: process.env.PORT || 8443,
   // Binding to 127.0.0.1 is safer in production.
   host: process.env.HOST || '0.0.0.0',
