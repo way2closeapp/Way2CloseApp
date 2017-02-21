@@ -1,3 +1,28 @@
-<section>
-  This is the Createproperty
+
+
+<section ng-controller="CreatepropertyController">
+  <div class="jumbotron text-center col-md-offset-2 col-md-8 col-md-offset-2 bg-setting">
+
+    <br>
+
+    <div class="row">
+      <p class="lead text-capitalize">
+        <h1>Create New Property</h1>
+		<form name="createProperty" data-ng-submit="createProperty()" class="form-group">
+Address: <input type="text" data-ng-model="address" class="form-control"/><br>
+MLS: <input type="text" data-ng-model="MLS" class="form-control"/><br>
+You are agent for: <input type="text" list="type" data-ng-model="agentrole" class="form-control"/><br>
+<datalist id="type">
+  <option>Buyer</option>
+  <option>Seller</option>
+</datalist>
+Other agent email: <input type="text" data-ng-model="agentemail" class="form-control"/><br>
+Buyer email: <input type="text" data-ng-model="buyeremail" class="form-control"/><br>
+Seller email: <input type="text" data-ng-model="selleremail" class="form-control"/><br>
+<button type="submit" class="btn btn-primary">Create New Property</button>
+</form>
+      </p>
+    </div>
+  </div>
+
 </section>
