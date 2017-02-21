@@ -13,6 +13,24 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
+      .state('multidashboard', {
+        url: '/multidashboard',
+        templateUrl: 'modules/core/client/views/multidashboard.client.view.html',
+        controller: 'MultidashboardController',
+        controllerAs: 'vm'
+      })
+      .state('singledashboard', {
+        url: '/singledashboard',
+        templateUrl: 'modules/core/client/views/singledashboard.client.view.html',
+        controller: 'SingledashboardController',
+        controllerAs: 'vm'
+      })
+      .state('createproperty', {
+        url: '/createproperty',
+        templateUrl: 'modules/core/client/views/createproperty.client.view.html',
+        controller: 'CreatepropertyController',
+        controllerAs: 'vm'
+      })
     .state('home', {
       url: '/',
       templateUrl: 'modules/core/client/views/home.client.view.html'
