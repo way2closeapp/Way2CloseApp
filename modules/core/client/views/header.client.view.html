@@ -55,8 +55,11 @@
         </ul>
       </li>
     </ul>
-	<a ui-sref="createproperty" class="navbar-brand">
+	<a ui-sref="createproperty" class="navbar-brand" ng-show="authentication.user">
 		+
+	</a>
+	<a ui-sref="calendar" class="nav navbar-nav navbar-brand navbar-right" ng-show="authentication.user">
+		<img src="http://svgshare.com/i/nB.svg"></img>
 	</a>
   </nav>
 </div>
