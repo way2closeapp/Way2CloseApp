@@ -1,10 +1,11 @@
 'use strict';
+process.env.MONGOHQ_UR ='mongodb://test1:Password@ds151279.mlab.com:51279/property';
 
+//|| process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev'
 var defaultEnvConfig = require('./default');
-
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
+    uri: process.env.MONGOHQ_URL || 'mongodb://test1:Password@ds151279.mlab.com:51279/property',
     options: {
       user: '',
       pass: ''
@@ -16,12 +17,19 @@ module.exports = {
     // logging with Morgan - https://github.com/expressjs/morgan
     // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
     format: 'dev',
-    fileLogger: {
-      directoryPath: process.cwd(),
-      fileName: 'app.log',
-      maxsize: 10485760,
-      maxFiles: 2,
-      json: false
+    options: {
+      // Stream defaults to process.stdout
+      // Uncomment/comment to toggle the logging to a log on the file system
+      //stream: {
+      //  directoryPath: process.cwd(),
+      //  fileName: 'access.log',
+      //  rotatingLogs: { // for more info on rotating logs - https://github.com/holidayextras/file-stream-rotator#usage
+      //    active: false, // activate to use rotating logs 
+      //    fileName: 'access-%DATE%.log', // if rotating logs are active, this fileName setting will be used
+      //    frequency: 'daily',
+      //    verbose: false
+      //  }
+      //}
     }
   },
   app: {
@@ -33,7 +41,6 @@ module.exports = {
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
-    username: '@TWITTER_USERNAME',
     clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
     clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
     callbackURL: '/api/auth/twitter/callback'
@@ -71,11 +78,11 @@ module.exports = {
   },
   livereload: true,
   seedDB: {
-    seed: process.env.MONGO_SEED === 'true',
+    seed: process.env.MONGO_SEED === 'true' ? true : false,
     options: {
-      logResults: process.env.MONGO_SEED_LOG_RESULTS !== 'false',
+      logResults: process.env.MONGO_SEED_LOG_RESULTS === 'false' ? false : true,
       seedUser: {
-        username: process.env.MONGO_SEED_USER_USERNAME || 'seeduser',
+        username: process.env.MONGO_SEED_USER_USERNAME || 'user',
         provider: 'local',
         email: process.env.MONGO_SEED_USER_EMAIL || 'user@localhost.com',
         firstName: 'User',
@@ -84,7 +91,7 @@ module.exports = {
         roles: ['user']
       },
       seedAdmin: {
-        username: process.env.MONGO_SEED_ADMIN_USERNAME || 'seedadmin',
+        username: process.env.MONGO_SEED_ADMIN_USERNAME || 'admin',
         provider: 'local',
         email: process.env.MONGO_SEED_ADMIN_EMAIL || 'admin@localhost.com',
         firstName: 'Admin',
