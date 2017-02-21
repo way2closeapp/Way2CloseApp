@@ -4,7 +4,7 @@ angular.module('core').controller('CreatepropertyController', ['$scope', 'Authen
   function ($scope, Authentication) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
-	 $scope.createProperty = function() {
+	/* $scope.createProperty = function() {
 // Simple POST request example (passing data) :
 $http.post('/newproperty', {name: contact_name, msg: contact_msg}).
   success(function(data, status, headers, config) {
@@ -15,6 +15,6 @@ $http.post('/newproperty', {name: contact_name, msg: contact_msg}).
     // called asynchronously if an error occurs
     // or server returns response with an error status.
   });
-}
+};*/
   }
 ]);
