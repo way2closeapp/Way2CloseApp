@@ -1,20 +1,38 @@
 'use strict';
 
-angular.module('core').controller('CreatepropertyController', ['$scope', 'Authentication',
-  function ($scope, Authentication) {
+angular.module('core').controller('CreatepropertyController', ['$scope', 'Authentication', 'Properties',
+  function ($scope, Authentication, Properties) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
-	/* $scope.createProperty = function() {
-// Simple POST request example (passing data) :
-$http.post('/newproperty', {name: contact_name, msg: contact_msg}).
-  success(function(data, status, headers, config) {
-    // this callback will be called asynchronously
-    // when the response is available
-  }).
-  error(function(data, status, headers, config) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
-};*/
+	 $scope.createProperty = function() {
+		 var buyeragent, selleragent, buyer, seller;
+		 if($scope.agentrole == "Buyer") {
+			 buyeragent += $scope.authentication.user.email;
+			 selleragent += $scope.agentemail;
+		 } else {
+			 selleragent += $scope.authentication.user.email;
+			 buyeragent += $scope.agentemail;
+		 }
+		 var property = new Property({
+			 address: $scope.address,
+			 mlsCode: $scope.MLS,
+			 buyeragent: buyeragent,
+			 selleragent: selleragent,
+			 buyer: buyeremail,
+			 seller: selleremail,
+			 creator: $scope.authentication.user.email,
+			 
+		 });
+		 // Redirect after save
+			property.$save(function(response) {
+				$location.path('properties/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
+	};
   }
 ]);
