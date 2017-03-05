@@ -20,15 +20,15 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controllerAs: 'vm'
       })
       .state('multidashboard', {
-        url: '/multidashboard',
+        url: '/',
         templateUrl: 'modules/core/client/views/multidashboard.client.view.html',
         controller: 'MultidashboardController',
         controllerAs: 'vm'
       })
       .state('singledashboard', {
-        url: '/singledashboard',
+        url: '/properties/:propertyId',
         templateUrl: 'modules/core/client/views/singledashboard.client.view.html',
-        controller: 'SingledashboardController',
+        controller: 'CreatepropertyController',
         controllerAs: 'vm'
       })
       .state('createproperty', {

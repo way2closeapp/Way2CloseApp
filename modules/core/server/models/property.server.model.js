@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  */
 var PropertySchema = new Schema({
   // Property model fields
-  _id: {type: String}, //property UID
+  //_id: {type: String}, //property UID
   address: {
 	  type: String,
 	  default: '',
@@ -37,8 +37,14 @@ var PropertySchema = new Schema({
 	  type: String,			//_id of seller
 	  required: true
   },
-  created_at: Date,
-  updated_at: Date,
+  created_at: {
+	  type: Date,
+	  default: Date.now
+  },
+  updated_at: {
+	  type: Date,
+	  default: Date.now
+  },
   creator: {
 	  type: String,			//_id of creator
 	  required: true
@@ -47,6 +53,6 @@ var PropertySchema = new Schema({
 	  type: String			//_id of most recent updater
   }
   
-});
+}, {collection: 'properties'});
 
 mongoose.model('Property', PropertySchema);
