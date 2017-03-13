@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('core').controller('CreatepropertyController', ['$scope', '$http', '$stateParams', 'Authentication', '$location', 'Properties', 'PTasksService',
-  function ($scope, $http, $stateParams, Authentication, $location, Properties, PTasksService) {
+angular.module('core').controller('CreatepropertyController', ['$scope', '$state', '$http', '$stateParams', 'Authentication', '$location', 'Properties', 'PTasksService', 
+  function ($scope, $state, $http, $stateParams, Authentication, $location, Properties, PTasksService) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
+	 var vm = this;
+	vm.complete = complete;
 	 $scope.create = function() {
 		 var buyeragent;
 		 var selleragent;
@@ -39,6 +41,80 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 
 	};
 	
+	$scope.findAll = function() {
+		var data = {
+                user: $scope.authentication.user.email
+            };
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            };
+		$http.post('/dash', data, config).
+		success(function(data) {
+			$scope.properties = data;
+			$scope.getPercentages();
+			
+		}).
+		error(function(err) {
+			$location.path('/authentication/signin');
+		});
+	};
+	
+	$scope.getPercentages = function() {
+		//alert(63);
+            $scope.config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            };
+		for(var i=0;i<$scope.properties.length; i++) {
+			//alert(70);
+			$scope.data = {
+                id: $scope.properties[i]._id
+            };
+
+				//alert(75);
+				$scope.properties[i].percentages = [0, 0, 0, 0];
+							//alert(JSON.stringify($scope.properties[i]));
+
+$http.post('api/tasks/property/'+$scope.data.id, $scope.data, $scope.config).
+	success(function(data, status, headers, config) {
+		//alert(JSON.stringify(data));
+		$scope.tasks = [];
+		$scope.BATasks = []; $scope.SATasks = []; $scope.BTasks = []; $scope.STasks = [];
+		$scope.roles = ["Buyer Agent", "Seller Agent", "Buyer", "Seller"];
+		for(var i=0; i<data.length; i++) {
+			var r = data[i].responsibility;
+			if(r == "buyeragent") {$scope.BATasks.push(data[i]);}
+			else if (r == "selleragent") {$scope.SATasks.push(data[i]);}
+			else if (r == "buyer") {$scope.BTasks.push(data[i]);}
+			else if (r == "seller") {$scope.STasks.push(data[i]);}
+		}
+		$scope.tasks = [$scope.BATasks, $scope.SATasks, $scope.BTasks, $scope.STasks];
+		for(var j = 0; j<$scope.tasks.length; j++) {
+			var sum = 0;
+					for(var task in $scope.tasks[j]) {
+						if($scope.tasks[j].complete) {sum++;}
+					}
+					if(sum==0) { $scope.properties[i].percentages[j] = 0;}
+					else {$scope.properties[i].percentages[j] =  (sum*100)/$scope.tasks[j].length;}
+		}
+			//alert(JSON.stringify($scope.properties[i].percentages));
+
+    }).
+    error(function(data, status, headers, config) {
+		alert("error")
+		alert(JSON.stringify(data));
+    });
+				
+				
+		}
+	};
+
+	
+	
+	
 		$scope.findOne = function() {
 
 		/*$scope.property = Properties.get({ 
@@ -58,23 +134,25 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 		var e = $scope.authentication.user.email;
 		$scope.role = e==data.buyeragent? 0 : e==data.selleragent? 1 : e==data.buyer? 2 : e==data.seller? 3 : 4;
 		//alert($scope.role);
+		$scope.roles = ["Buyer Agent", "Seller Agent", "Buyer", "Seller"];
+		$scope.roleName = $scope.roles.splice($scope.role, 1);
 		$scope.property = data;
 		$scope.getTasks();
+				
     }).
     error(function(data, status, headers, config) {
 		alert("error: " + JSON.stringify(data));
       $scope.error = 'Problem finding a user with that email';
     });
-
-
 	};
+	
 	$scope.getTasks = function() {
 	$http.post('api/tasks/property/'+$scope.data.id, $scope.data, $scope.config).
 	success(function(data, status, headers, config) {
 		//alert(JSON.stringify(data));
 		//$scope.tasks = data;
 		$scope.BATasks = []; $scope.SATasks = []; $scope.BTasks = []; $scope.STasks = [];
-		$scope.roles = ["Buyer Agent", "Seller Agent", "Buyer", "Seller"];
+		
 		for(var i=0; i<data.length; i++) {
 			var r = data[i].responsibility;
 			if(r == "buyeragent") {$scope.BATasks.push(data[i]);}
@@ -90,6 +168,24 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 		alert(JSON.stringify(data));
     });
 	};
+	
+	
+	function complete(task) {
+
+		//alert(JSON.stringify(task));
+		task.complete = true;
+		task.completed_on = new Date();
+		var data = {task: task};
+		$http.put('/api/tasks/'+task._id, task, $scope.config).
+		success(function(data, status, headers, config) {
+
+    }).
+    error(function(data, status, headers, config) {
+		alert("error");
+		
+    });
+
+	}
   }
 ]);
 

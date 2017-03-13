@@ -17,6 +17,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+	vm.complete = complete;
 
     // Remove existing Task
     function remove() {
@@ -27,6 +28,26 @@
       }
     }
 
+	// Mark Existing Task as Completed
+	function complete() {
+		alert("completing...");
+		vm.task.complete = true;
+		vm.task.completed_on = new Date();
+		vm.task.$update(successCallback, errorCallback);
+
+      function successCallback(res) {
+		  alert("Marked Complete");
+        //$state.go('singledashboard'
+		//, {propertyId: res.property}
+		//);
+      }
+
+      function errorCallback(res) {
+        vm.error = res.data.message;
+		alert(vm.error);
+		alert(JSON.stringify(data));
+      }
+	}
     // Save Task
     function save(isValid) {
       if (!isValid) {

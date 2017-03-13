@@ -1,6 +1,13 @@
 <section>
   <div class="page-header">
     <h1 ng-bind="vm.task.name"></h1>
+	<h3>Responsibility: <span ng-bind="vm.task.responsibility"></span></h3>
+	<h3>Due By: <span ng-bind="vm.task.due | date:'MM/dd/yyyy'"></span></h3>
+	<h3>Complete: <span ng-bind="vm.task.complete"></span></h3>
+	<h3>Completed On: <span ng-bind="vm.task.completed_on | date:'MM/dd/yyyy'"></span></h3>
+	<a class="btn btn-primary" ng-click="vm.complete()">
+      Mark Task as Complete
+    </a>
   </div>
   <div class="pull-right"
        ng-show="vm.task.isCurrentUserOwner">

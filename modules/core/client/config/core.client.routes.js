@@ -22,7 +22,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       .state('multidashboard', {
         url: '/',
         templateUrl: 'modules/core/client/views/multidashboard.client.view.html',
-        controller: 'MultidashboardController',
+        controller: 'CreatepropertyController',
         controllerAs: 'vm'
       })
       .state('singledashboard', {

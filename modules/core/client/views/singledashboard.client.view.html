@@ -23,7 +23,7 @@
 				<td><h3 ng-bind="task.name">Task Name</h3></td>
 				<td><h3 ng-bind="task.created | date:'MM/dd/yyyy'">Added</h3></td>
 				<td><h3 ng-bind="task.due | date:'MM/dd/yyyy'">Deadline</h3></td>
-				<td><h3 ng-bind="task.complete">Completed</h3></td>
+				<td><h3><a class="btn btn-primary" ng-click="vm.complete(task)" ng-bind="task.complete"></a></h3></td>
 			</tr>
 			</tbody>
 		</table>
