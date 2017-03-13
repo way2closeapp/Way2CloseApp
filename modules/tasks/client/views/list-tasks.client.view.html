@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Tasks</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="task in vm.tasks"
+       ui-sref="tasks.view({ taskId: task._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="task.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="task.user" ng-bind="task.user.displayName"></span>
+        <span ng-if="!task.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="task.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.tasks.$resolved && !vm.tasks.length">
+    No Tasks yet, why don't you <a ui-sref="tasks.create">create one</a>?
+  </div>
+</section>

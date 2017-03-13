@@ -7,44 +7,30 @@ angular.module('core').controller('MultidashboardController', ['$scope', '$state
 		  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
 $scope.offset = 0;
+		
 	$scope.find = function() {
-		alert("finding");
-		$http.post('/dash').
+		var data = {
+                user: $scope.authentication.user.email
+            };
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+		//alert("email sent: "+$scope.authentication.user.email+data.user)
+		$http.post('/dash', data, config).
 		success(function(data) {
-			alert("great success");
-			alert(data);
 			$scope.properties = data;
-			
+			//alert(data);
+			//alert(data.length);
 		}).
 		error(function(err) {
-			alert(err);
+			alert("ERRPR");
+			//alert(err);
 		});
 		//$scope.properties = Properties.query();
 		//$scope.properties = Properties.list();
-		//alert($scope.properties.tostring());
-		//alert(JSON.stringify($scope.properties));
-		
-		//alert($scope.properties.length);
 	};
-	$scope.findOne = function() {
-		//alert("multione");
-		alert($stateParams.propertyId);
-		$scope.property = Properties.get({ 
-				propertyId: $stateParams.propertyId
-});
-		alert($scope.property);
-		alert(JSON.stringify($scope.property));
-		/*$http.get('/properties/'+$stateParams.propertyId).
-	success(function(data, status, headers, config) {
-        
-		alert(data);
-
-    }).
-    error(function(data, status, headers, config) {
-      $scope.error = 'Problem finding a user with that email';
-	  alert(data);
-
-    });*/
-	};
+	
   }
 ]);

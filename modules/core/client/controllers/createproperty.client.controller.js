@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('CreatepropertyController', ['$scope', '$http', '$stateParams', 'Authentication', '$location', 'Properties',
-  function ($scope, $http, $stateParams, Authentication, $location, Properties) {
+angular.module('core').controller('CreatepropertyController', ['$scope', '$http', '$stateParams', 'Authentication', '$location', 'Properties', 'PTasksService',
+  function ($scope, $http, $stateParams, Authentication, $location, Properties, PTasksService) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
 	 $scope.create = function() {
@@ -27,9 +27,8 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 		 
 		 // Redirect after save
 			property.$save(function(response) {
-				alert(response);
-				$location.path('/');
-
+				var id = response._id;
+				$location.path('/properties/'+id);
 				// Clear form fields
 				$scope.name = '';
 			}, function(err) {
@@ -41,40 +40,53 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 	};
 	
 		$scope.findOne = function() {
-		alert("multione");
-		alert($stateParams.propertyId);
+
 		/*$scope.property = Properties.get({ 
 				propertyId: $stateParams.propertyId
-});
-		alert($scope.property);
-		alert($scope.property.id);
-		alert($scope.property._id);
-		alert($scope.property.length);
-		alert(JSON.stringify($scope.property));*/
+});*/
 		var data = {
                 id: $stateParams.propertyId
             };
-       // alert(57);
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-			//alert(63);
 		$http.post('/properties/'+$stateParams.propertyId, data, config).
 	success(function(data, status, headers, config) {
-        
-		//alert(data);
-	//alert(JSON.stringify(data));
-	$scope.property = data;
-alert($scope.property.address);
+		alert(JSON.stringify(data));
+		var e = $scope.authentication.user.email;
+		$scope.role = e==data.buyeragent? 0 : e==data.selleragent? 1 : e==data.buyer? 2 : e==data.seller? 3 : 4;
+		alert($scope.role);
+		$scope.property = data;
+		
     }).
     error(function(data, status, headers, config) {
+		alert("error: " + JSON.stringify(data));
       $scope.error = 'Problem finding a user with that email';
-	  //alert(data);
-//alert(JSON.stringify(data));
-
     });
+
+	$http.post('api/tasks/property/'+data.id, data, config).
+	success(function(data, status, headers, config) {
+		//alert(JSON.stringify(data));
+		//$scope.tasks = data;
+		$scope.BATasks = []; $scope.SATasks = []; $scope.BTasks = []; $scope.STasks = [];
+		$scope.roles = ["Buyer Agent", "Seller Agent", "Buyer", "Seller"];
+		for(var i=0; i<data.length; i++) {
+			var r = data[i].responsibility;
+			if(r == "buyeragent") {$scope.BATasks.push(data[i]);}
+			else if (r == "selleragent") {$scope.SATasks.push(data[i]);}
+			else if (r == "buyer") {$scope.BTasks.push(data[i]);}
+			else if (r == "seller") {$scope.STasks.push(data[i]);}
+		}
+		$scope.tasks = [$scope.BATasks, $scope.SATasks, $scope.BTasks, $scope.STasks];
+		alert(JSON.stringify($scope.tasks[0]));
+    }).
+    error(function(data, status, headers, config) {
+		alert("error")
+		alert(JSON.stringify(data));
+    });
+
 	};
   }
 ]);
