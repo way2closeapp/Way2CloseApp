@@ -44,29 +44,32 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 		/*$scope.property = Properties.get({ 
 				propertyId: $stateParams.propertyId
 });*/
-		var data = {
+		$scope.data = {
                 id: $stateParams.propertyId
             };
-            var config = {
+            $scope.config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
-            }
-		$http.post('/properties/'+$stateParams.propertyId, data, config).
+            };
+		$http.post('/properties/'+$stateParams.propertyId, $scope.data, $scope.config).
 	success(function(data, status, headers, config) {
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
 		var e = $scope.authentication.user.email;
 		$scope.role = e==data.buyeragent? 0 : e==data.selleragent? 1 : e==data.buyer? 2 : e==data.seller? 3 : 4;
-		alert($scope.role);
+		//alert($scope.role);
 		$scope.property = data;
-		
+		$scope.getTasks();
     }).
     error(function(data, status, headers, config) {
 		alert("error: " + JSON.stringify(data));
       $scope.error = 'Problem finding a user with that email';
     });
 
-	$http.post('api/tasks/property/'+data.id, data, config).
+
+	};
+	$scope.getTasks = function() {
+	$http.post('api/tasks/property/'+$scope.data.id, $scope.data, $scope.config).
 	success(function(data, status, headers, config) {
 		//alert(JSON.stringify(data));
 		//$scope.tasks = data;
@@ -80,13 +83,15 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$http'
 			else if (r == "seller") {$scope.STasks.push(data[i]);}
 		}
 		$scope.tasks = [$scope.BATasks, $scope.SATasks, $scope.BTasks, $scope.STasks];
-		alert(JSON.stringify($scope.tasks[0]));
+		$scope.mytasks = $scope.tasks.splice($scope.role, 1);
     }).
     error(function(data, status, headers, config) {
 		alert("error")
 		alert(JSON.stringify(data));
     });
-
 	};
   }
 ]);
+
+
+

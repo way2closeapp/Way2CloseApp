@@ -10,9 +10,27 @@
         <h1 ng-bind="property.address">{{property.address}}</h1>
 		<a href="{{property._id}}/tasks/create">Add Tasks</a>
 		<!--<a href="{{property._id}}/tasks">Add or Edit Tasks</a>-->
-
+		<table class="table">
+			<caption>My Tasks</caption>
+			<thead>
+				<th><h2>Task Name</h2></th>
+				<th><h2>Added</h2></th>
+				<th><h2>Deadline</h2></th>
+				<th><h2>Completed?</h2></th>
+			</thead>
+			<tbody>
+			<tr ng-repeat="task in mytasks[0]" ng-href="./{{property._id}}/tasks/{{task._id}}">
+				<td><h3 ng-bind="task.name">Task Name</h3></td>
+				<td><h3 ng-bind="task.created | date:'MM/dd/yyyy'">Added</h3></td>
+				<td><h3 ng-bind="task.due | date:'MM/dd/yyyy'">Deadline</h3></td>
+				<td><h3 ng-bind="task.complete">Completed</h3></td>
+			</tr>
+			</tbody>
+		</table>
+		
+		
 		<div class="border row">
-			<div class="border col-sm-3" ng-repeat="userTasks in tasks">
+			<div class="border col-sm-4" ng-repeat="userTasks in tasks">
 				<h2 ng-bind="roles[$index]">{{roles[$index]}}</h2>
 				<a ng-repeat="task in userTasks" ng-href="./{{property._id}}/tasks/{{task._id}}" class="list-group-item">
 					<h4 class="list-group-item-heading" ng-bind="task.name">{{task.name}}</h4>

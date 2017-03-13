@@ -25,7 +25,7 @@ $scope.offset = 0;
 			//alert(data.length);
 		}).
 		error(function(err) {
-			alert("ERRPR");
+			$location.path('/authentication/signin');
 			//alert(err);
 		});
 		//$scope.properties = Properties.query();
