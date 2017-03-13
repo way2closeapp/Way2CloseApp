@@ -1,7 +1,7 @@
 'use strict';
 
 var defaultEnvConfig = require('./default');
-
+process.env.MONGOHQ_URL = 'mongodb://test1:Password@ds151279.mlab.com:51279/property';
 module.exports = {
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',

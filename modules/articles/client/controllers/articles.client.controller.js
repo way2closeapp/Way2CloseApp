@@ -1,11 +1,18 @@
 'use strict';
-
+var propertyApp = angular.module('articles');
 // Articles controller
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-  function ($scope, $stateParams, $location, Authentication, Articles) {
-    $scope.authentication = Authentication;
+propertyApp.controller('ArticlesController', ['$scope', '$stateParams', 'Authentication', 'Articles',
+  function ($scope, $stateParams, Authentication, Articles) {
+    this.authentication = Authentication;
+      // Find a list of Articles
 
-    // Create new Article
+    this.articles = Articles.query();
+
+  }]);
+propertyApp.controller('ArticlesCreateController', ['$scope','$location' ,'Authentication', 'Articles',
+  function ($scope, $location, Authentication, Articles) {
+    $scope.authentication = Authentication;
+        // Create new Article
     $scope.create = function (isValid) {
       $scope.error = null;
 
@@ -14,43 +21,52 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
         return false;
       }
-
-      // Create new Article object
+            // Create new Article object
       var article = new Articles({
-        title: this.title,
-        content: this.content
+
+        agent: this.agent,
+        firstName: this.buyerFirst,
+        lastName: this.buyerLast,
+        clientID: this.clientID,
+        email: this.email,
+        street: this.street,
+        city: this.city,
+        state: this.state,
+        zip: this.zip,
+        mlsCode: this.mlsCode,
+        seller: this.seller,
+        tasks: this.tasks,
+        active: this.active
+
       });
 
-      // Redirect after save
+            // Redirect after save
       article.$save(function (response) {
         $location.path('articles/' + response._id);
 
-        // Clear form fields
-        $scope.title = '';
-        $scope.content = '';
+                // Clear form fields
+        $scope.agent='',
+                    $scope.firstName='',
+                    $scope.lastName='',
+                    $scope.clientID='',
+                    $scope.email='',
+                    $scope.street='',
+                    $scope.city='',
+                    $scope.state='',
+                    $scope.zip='',
+                    $scope.mlsCode='',
+                    $scope.seller=''
+
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
     };
 
-    // Remove existing Article
-    $scope.remove = function (article) {
-      if (article) {
-        article.$remove();
-
-        for (var i in $scope.articles) {
-          if ($scope.articles[i] === article) {
-            $scope.articles.splice(i, 1);
-          }
-        }
-      } else {
-        $scope.article.$remove(function () {
-          $location.path('articles');
-        });
-      }
-    };
-
-    // Update existing Article
+  }]);
+propertyApp.controller('ArticlesEditController', ['$scope', '$location' , 'Articles', 'Authentication',
+  function ($scope, $location, Articles , Authentication) {
+    $scope.authentication = Authentication;
+        // Update existing Article
     $scope.update = function (isValid) {
       $scope.error = null;
 
@@ -69,16 +85,62 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
       });
     };
 
-    // Find a list of Articles
-    $scope.find = function () {
-      $scope.articles = Articles.query();
-    };
+  }]);
 
-    // Find existing Article
+propertyApp.controller('ArticlesFindOneController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
+  function ($scope, $location, $stateParams, Authentication, Articles) {
+    $scope.authentication = Authentication;
+
+        // Find existing Article
     $scope.findOne = function () {
       $scope.article = Articles.get({
         articleId: $stateParams.articleId
       });
     };
-  }
-]);
+        // Remove existing Article
+    $scope.remove = function (article) {
+      if (article) {
+        article.$remove();
+
+        for (var i in $scope.articles) {
+          if ($scope.articles[i] === article) {
+            $scope.articles.splice(i, 1);
+          }
+        }
+      } else {
+        $scope.article.$remove(function () {
+          $location.path('articles');
+        });
+      }
+    };
+        // Update existing Article
+    $scope.update = function (isValid) {
+      $scope.error = null;
+
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'articleForm');
+
+        return false;
+      }
+
+      var article = $scope.article;
+
+      article.$update(function () {
+        $location.path('articles/' + article._id);
+      }, function (errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
+    };
+  }]);
+
+
+
+
+
+
+
+
+
+
+
+

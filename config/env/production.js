@@ -1,5 +1,5 @@
 'use strict';
-
+process.env.MONGOHQ_URL = 'mongodb://test1:Password@ds151279.mlab.com:51279/property';
 module.exports = {
   secure: {
     ssl: true,

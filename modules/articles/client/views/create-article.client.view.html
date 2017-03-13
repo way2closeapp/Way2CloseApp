@@ -1,27 +1,100 @@
-<section ng-controller="ArticlesController">
+<section ng-controller="ArticlesCreateController">
   <div class="page-header">
-    <h1>New Article</h1>
+    <h1>New Property</h1>
   </div>
   <div class="col-md-12">
     <form name="articleForm" class="form-horizontal" ng-submit="create(articleForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label for="title">Title</label>
-          <input name="title" type="text" ng-model="title" id="title" class="form-control" placeholder="Title" required>
-          <div ng-messages="articleForm.title.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Article title is required.</p>
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <i class="glyphicon glyphicon-user"></i>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="content">Content</label>
-          <textarea name="content" ng-model="content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-default">
-        </div>
-        <div ng-show="error" class="text-danger">
-          <strong ng-bind="error"></strong>
-        </div>
+          <div class="col-sm-6 ">
+            <label class="control-label" for="agent">Agent Name</label>
+            <div class="controls">
+              <input name="agent" type="text" data-ng-model="agent" id="agent" class="form-control">
+            </div>
+            <label class="control-label" for="buyerFirst">Byer First Name</label>
+            <div class="controls">
+
+              <input name="buyerFirst" type="text" data-ng-model="buyerFirst" id="buyerFirst" class="form-control">
+            </div>
+
+            <label class="control-label" for="buyerLast">Buyer Last Name</label>
+            <div class="controls">
+
+              <input name="buyerLast" type="text" data-ng-model="buyerLast" id="buyerLast" class="form-control">
+            </div>
+
+            <label class="control-label" for="buyerLast">Client ID</label>
+            <div class="controls">
+
+              <input name="clientID" type="text" data-ng-model="clientID" id="clientID" class="form-control">
+            </div>
+
+            <label class="control-label" for="seller">Email</label>
+            <div class="controls">
+
+              <input name="email" type="text" data-ng-model="email" id="email" class="form-control">
+            </div>
+
+            <label class="control-label" for="seller">Seller</label>
+            <div class="controls">
+
+              <input name="seller" type="text" data-ng-model="seller" id="seller" class="form-control">
+            </div>
+
+
+            <label class="control-label" for="mlsCode">MLS Code</label>
+            <div class="controls">
+
+              <input name="mlsCode" type="text" data-ng-model="mlsCode" id="mlsCode" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 col-sm-push-6">
+              <label class="control-label" for="street">Street</label>
+              <div class="controls">
+
+                <input name="street" type="text" data-ng-model="street" id="street" class="form-control">
+              </div>
+
+
+              <label class="control-label" for="state">State</label>
+              <div class="controls">
+
+                <input name="state" type="text" data-ng-model="state" id="state" class="form-control">
+              </div>
+
+            </div>
+            <div class="col-sm-3 col-sm-push-6">
+              <label class="control-label" for="city">City</label>
+              <div class="controls">
+
+                <input name="city" type="text" data-ng-model="city" id="city" class="form-control">
+              </div>
+
+              <label class="control-label" for="zip">ZIP</label>
+              <div class="controls">
+
+                <input name="zip" type="text" data-ng-model="zip" id="zip" class="form-control">
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+
+
+            <div class="col-sm-6">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-success">
+          </div>
+          <div ng-show="error" class="text-danger">
+            <strong ng-bind="error"></strong>
+          </div>
       </fieldset>
     </form>
   </div>
