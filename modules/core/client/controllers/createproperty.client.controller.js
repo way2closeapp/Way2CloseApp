@@ -62,46 +62,53 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$state
 	};
 	
 	$scope.getPercentages = function() {
-		//alert(63);
+		console.log(63);
             $scope.config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-		for(var i=0;i<$scope.properties.length; i++) {
-			//alert(70);
+			console.log($scope.properties.length);
+		for(var i=0; i < $scope.properties.length; i++) {
+			console.log(70);
 			$scope.data = {
                 id: $scope.properties[i]._id
-            };
+            }
 
 				//alert(75);
-				$scope.properties[i].percentages = [0, 0, 0, 0];
+				$scope.properties[i].percentages = ['', '', '', ''];
 							//alert(JSON.stringify($scope.properties[i]));
-
+		var brakes = 0;
 $http.post('api/tasks/property/'+$scope.data.id, $scope.data, $scope.config).
 	success(function(data, status, headers, config) {
 		//alert(JSON.stringify(data));
+		//if(){ //brakes++;
 		$scope.tasks = [];
 		$scope.BATasks = []; $scope.SATasks = []; $scope.BTasks = []; $scope.STasks = [];
 		$scope.roles = ["Buyer Agent", "Seller Agent", "Buyer", "Seller"];
-		for(var i=0; i<data.length; i++) {
-			var r = data[i].responsibility;
-			if(r == "buyeragent") {$scope.BATasks.push(data[i]);}
-			else if (r == "selleragent") {$scope.SATasks.push(data[i]);}
-			else if (r == "buyer") {$scope.BTasks.push(data[i]);}
-			else if (r == "seller") {$scope.STasks.push(data[i]);}
+		for(var k=0; k<data.length; k++) {
+			var r = data[k].responsibility;
+			if(r == "buyeragent") {$scope.BATasks.push(data[k]);}
+			else if (r == "selleragent") {$scope.SATasks.push(data[k]);}
+			else if (r == "buyer") {$scope.BTasks.push(data[k]);}
+			else if (r == "seller") {$scope.STasks.push(data[k]);}
 		}
 		$scope.tasks = [$scope.BATasks, $scope.SATasks, $scope.BTasks, $scope.STasks];
-		for(var j = 0; j<$scope.tasks.length; j++) {
+		for(var j = 0; j<4; j++) {
 			var sum = 0;
-					for(var task in $scope.tasks[j]) {
-						if($scope.tasks[j].complete) {sum++;}
-					}
-					if(sum==0) { $scope.properties[i].percentages[j] = 0;}
-					else {$scope.properties[i].percentages[j] =  (sum*100)/$scope.tasks[j].length;}
+			for(var k = 0; k<$scope.tasks[j].length; k++) {
+				//console.log($scope.tasks[j][k].complete);
+						if($scope.tasks[j][k].complete) {
+							//console.log("completed");
+							sum++;}
+			}
+			console.log(i);
+			if(sum==0) { $scope.properties[i].percentages[j] = '2%';}
+			//else if ($scope.tasks[j].length == 0) { $scope.properties[i].percentages[j] = '100%'; }
+			else { $scope.properties[i].percentages[j] =  ((sum*100)/$scope.tasks[j].length) + "%"; }
 		}
-			//alert(JSON.stringify($scope.properties[i].percentages));
-
+			console.log(JSON.stringify($scope.properties[i].percentages));
+	//} else {console.log("brakes applied");}
     }).
     error(function(data, status, headers, config) {
 		alert("error")

@@ -9,19 +9,37 @@
 		<div class="list-group">
         <a ng-repeat="property in properties" ng-href="./properties/{{property._id}}" class="list-group-item">
 		<table>
+				<!--<tr><h1 ng-bind="property.percentages[0]"></h1></tr>-->
 				<tr><td><h4 class="list-group-item-heading" ng-bind="property.address">{{property.address}}</h4></td></tr>
 				<tr>
-					<td class="border col-sm-4">Buyer Agent</td>
-					<td class="border col-sm-4">Seller Agent</td>
-					<td class="border col-sm-4">Buyer</td>
-					<td class="border col-sm-4">Seller</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+						<div ng-style="{ 'width' : property.percentages[0], 'background' : 'green' }">Buyer Agent</div>
+					</div>
+					</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+					<div ng-style="{ 'width' : property.percentages[1], 'background' : 'green' }">Seller Agent</div>
+					</div>
+					</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+					<div ng-style="{ 'width' : property.percentages[2], 'background' : 'green' }">Buyer</div>
+					</div>
+					</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+					<div ng-style="{ 'width' : property.percentages[3], 'background' : 'green' }">Seller</div>
+					</div>
+					</td>
 				</tr>
 				<tr>
 					<td>Next Task: <span ng-bind="property.next"></span></td>
-					<td>MLS: <span ng-bind="property.MLS"></span></td>
+					<td>MLS: <span ng-bind="property.mlsCode"></span></td>
 				</tr>
 		<table>
         </a>
+
     </div>
       </p>
     </div>
