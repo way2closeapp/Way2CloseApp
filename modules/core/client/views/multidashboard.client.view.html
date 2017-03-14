@@ -1,16 +1,45 @@
-<section ng-controller="MultidashboardController" ng-init="find()">
+<section ng-controller="CreatepropertyController" ng-init="findAll()">
   <div class="jumbotron text-center col-md-offset-2 col-md-8 col-md-offset-2 bg-setting">
 
     <br>
 
     <div class="row">
       <p class="lead text-capitalize">
-        <h1>This is the Multidashboard</h1>
+        <h2>Open Transactions</h2>
 		<div class="list-group">
         <a ng-repeat="property in properties" ng-href="./properties/{{property._id}}" class="list-group-item">
-			<h4 class="list-group-item-heading" ng-bind="property.address">{{property.id}}</h4>
-            <span ng-bind="property.buyeragent"></span>
+		<table>
+				<!--<tr><h1 ng-bind="property.percentages[0]"></h1></tr>-->
+				<tr><td><h4 class="list-group-item-heading" ng-bind="property.address">{{property.address}}</h4></td></tr>
+				<tr>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+						<div ng-style="{ 'width' : property.percentages[0], 'background' : 'green' }">Buyer Agent</div>
+					</div>
+					</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+					<div ng-style="{ 'width' : property.percentages[1], 'background' : 'green' }">Seller Agent</div>
+					</div>
+					</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+					<div ng-style="{ 'width' : property.percentages[2], 'background' : 'green' }">Buyer</div>
+					</div>
+					</td>
+					<td class="border col-sm-4">
+					<div ng-style="{'width':'100%', 'background':'blue'}">
+					<div ng-style="{ 'width' : property.percentages[3], 'background' : 'green' }">Seller</div>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Next Task: <span ng-bind="property.next"></span></td>
+					<td>MLS: <span ng-bind="property.mlsCode"></span></td>
+				</tr>
+		<table>
         </a>
+
     </div>
       </p>
     </div>
