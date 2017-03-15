@@ -20,15 +20,15 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controllerAs: 'vm'
       })
       .state('multidashboard', {
-        url: '/multidashboard',
+        url: '/',
         templateUrl: 'modules/core/client/views/multidashboard.client.view.html',
-        controller: 'MultidashboardController',
+        controller: 'CreatepropertyController',
         controllerAs: 'vm'
       })
       .state('singledashboard', {
-        url: '/singledashboard',
+        url: '/properties/:propertyId',
         templateUrl: 'modules/core/client/views/singledashboard.client.view.html',
-        controller: 'SingledashboardController',
+        controller: 'CreatepropertyController',
         controllerAs: 'vm'
       })
       .state('createproperty', {
@@ -37,10 +37,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controller: 'CreatepropertyController',
         controllerAs: 'vm'
       })
-    .state('home', {
-      url: '/',
-      templateUrl: 'modules/core/client/views/home.client.view.html'
-    })
+    //.state('home', {
+    //  url: '/',
+    //  templateUrl: 'modules/core/client/views/home.client.view.html'
+    //})
     .state('not-found', {
       url: '/not-found',
       templateUrl: 'modules/core/client/views/404.client.view.html',
