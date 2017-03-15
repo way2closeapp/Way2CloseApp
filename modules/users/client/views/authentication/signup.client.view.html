@@ -14,6 +14,10 @@
             <div ng-messages="userForm.firstName.$error" role="alert">
               <p class="help-block error-text" ng-message="required">First name is required.</p>
             </div>
+
+         <!--Pat </div>
+        </div>-->
+
           </div>
         </div>
         </br>
@@ -29,6 +33,8 @@
           </div>
         </div>
 
+
+
         </br>
         <div class="input-group ">
           <span class="input-group-addon">
@@ -36,6 +42,7 @@
           </span>
 
           <div class="form-group" show-errors>
+
             <input type="text" id="company" name="company" class="form-control" ng-model="credentials.username" placeholder="Company Name" lowercase required>
             <div ng-messages="userForm.username.$error" role="alert">
             </div>
@@ -57,6 +64,8 @@
           </div>
         </div>
 
+        </div>
+
         </br>
         <div class="input-group ">
           <span class="input-group-addon">
@@ -69,7 +78,14 @@
               <p class="help-block error-text" ng-message="required">Username is required.</p>
             </div>
 
+
+         <!-- ? </div>
+
+        </div>-->
+
           </div>
+
+        </div>
 
         </div>
 
@@ -91,9 +107,11 @@
           </div>
         </div>
 
+     
+
         </br>
         <div class="input-group ">
-          <label/> Roll select:
+          <label/> Role select:
           <select name="role" ng-model="role" class="form-control"/>
           <option value="Buyer">Admin</option>
           <option value="Seller">User</option>
