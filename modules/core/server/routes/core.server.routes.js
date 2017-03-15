@@ -12,4 +12,6 @@ module.exports = function (app) {
 
   // Define application route
   app.route('/*').get(core.renderIndex);
+  
+  //app.route('/newproperty').get('../controllers/property.server.controller.js');
 };

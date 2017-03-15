@@ -35,7 +35,17 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
 .property-list{
   font-size: 100px;
   color: #A00000;
+}
+.bg-setting{
+  background-color: #83756f;
+  border-radius: 15px;
+  border-bottom-width: thick;
+  border-color: #A00000;
+}
+p {
+  color: ghostwhite;
 }

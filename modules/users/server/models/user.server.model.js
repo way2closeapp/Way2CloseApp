@@ -45,6 +45,10 @@ var UserSchema = new Schema({
     type: String,
     trim: true
   },
+  company:{
+    type: String,
+    trim: true
+  },
   email: {
     type: String,
     unique: true,

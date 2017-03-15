@@ -13,10 +13,34 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'modules/core/client/views/home.client.view.html'
-    })
+      .state('calendar', {
+        url: '/calendar',
+        templateUrl: 'modules/core/client/views/calendar.client.view.html',
+        controller: 'CalendarController',
+        controllerAs: 'vm'
+      })
+      .state('multidashboard', {
+        url: '/',
+        templateUrl: 'modules/core/client/views/multidashboard.client.view.html',
+        controller: 'CreatepropertyController',
+        controllerAs: 'vm'
+      })
+      .state('singledashboard', {
+        url: '/properties/:propertyId',
+        templateUrl: 'modules/core/client/views/singledashboard.client.view.html',
+        controller: 'CreatepropertyController',
+        controllerAs: 'vm'
+      })
+      .state('createproperty', {
+        url: '/createproperty',
+        templateUrl: 'modules/core/client/views/createproperty.client.view.html',
+        controller: 'CreatepropertyController',
+        controllerAs: 'vm'
+      })
+    //.state('home', {
+    //  url: '/',
+    //  templateUrl: 'modules/core/client/views/home.client.view.html'
+    //})
     .state('not-found', {
       url: '/not-found',
       templateUrl: 'modules/core/client/views/404.client.view.html',
