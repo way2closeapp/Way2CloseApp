@@ -74,21 +74,25 @@ exports.delete = function(req, res) {
  * List of properties
  */
 exports.list = function(req, res) {
+
 	var email = req.user.email;
 	console.log(email);
 	Property.find({$or: [{buyeragent: email}, {selleragent:email}, 
 		{buyer: email}, {seller: email}]}).exec(function(err, models) {
+
 			if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+
 			res.json(models);
 		}
 		});
 	console.log("anything");
 	//ORIGINAL: returns all listings: May need this later for master view.
 	/*Property.find().exec(function(err, models) {
+
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -96,7 +100,9 @@ exports.list = function(req, res) {
 		} else {
 			res.json(models);
 		}
+
 	});*/
+
 };
 
 /**

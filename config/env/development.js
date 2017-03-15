@@ -3,6 +3,7 @@ process.env.MONGOHQ_URL ='mongodb://test1:Password@ds151279.mlab.com:51279/prope
 process.env.MONGOHQ_URL = 'mongodb://PWismain:main@ds117859.mlab.com:17859/cen3031groupc';
 //|| process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev'
 var defaultEnvConfig = require('./default');
+process.env.MONGOHQ_URL = 'mongodb://test1:Password@ds151279.mlab.com:51279/property';
 module.exports = {
   db: {
     uri: process.env.MONGOHQ_URL || 'mongodb://test1:Password@ds151279.mlab.com:51279/property',

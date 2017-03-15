@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('core').controller('CreatepropertyController', ['$scope', '$state', '$http', '$stateParams', 'Authentication', '$location', 'Properties', 'PTasksService', 
   function ($scope, $state, $http, $stateParams, Authentication, $location, Properties, PTasksService) {
     // This provides Authentication context.
@@ -29,8 +30,10 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$state
 		 
 		 // Redirect after save
 			property.$save(function(response) {
+
 				var id = response._id;
 				$location.path('/properties/'+id);
+
 				// Clear form fields
 				$scope.name = '';
 			}, function(err) {
@@ -41,6 +44,7 @@ angular.module('core').controller('CreatepropertyController', ['$scope', '$state
 
 	};
 	
+
 	$scope.findAll = function() {
 		var data = {
                 user: $scope.authentication.user.email
@@ -195,6 +199,5 @@ $http.post('api/tasks/property/'+$scope.data.id, $scope.data, $scope.config).
 	}
   }
 ]);
-
 
 

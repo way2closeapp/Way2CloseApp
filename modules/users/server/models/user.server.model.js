@@ -17,6 +17,7 @@ var validateLocalStrategyProperty = function (property) {
   return ((this.provider !== 'local' && !this.updated) || property.length);
 };
 
+
 /**
  * A Validation function for local strategy email
  */
@@ -84,9 +85,8 @@ var UserSchema = new Schema({
     type: [{
       type: String,
       enum: ['user', 'admin']
-    }],
-    default: ['user'],
-    required: 'Please provide at least one role'
+    }]
+
   },
   updated: {
     type: Date
@@ -206,5 +206,4 @@ UserSchema.statics.generateRandomPassphrase = function () {
     }
   });
 };
-
 mongoose.model('User', UserSchema);

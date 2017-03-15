@@ -1,5 +1,7 @@
 {
-  "name": "property",
+
+  "name": "prop",
+
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
   "version": "0.4.2",
   "meanjs-version": "0.4.2",
