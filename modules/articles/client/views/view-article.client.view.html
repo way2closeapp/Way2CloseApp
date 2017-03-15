@@ -1,0 +1,24 @@
+<section ng-controller="ArticlesFindOneController" ng-init="findOne()">
+  <div class="page-header">
+    <h1 ng-bind="article.agent"></h1>
+  </div>
+  <div class="pull-right" ng-show="authentication.user._id == article.user._id">
+    <a class="btn btn-primary" ui-sref="articles.edit({articleId: article._id})">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="remove();">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+   <h1><em class="text-muted">
+     Posted on
+     <span ng-bind="article.created_at | date:'mediumDate'"></span>
+     by
+     <span ng-bind="article.user.displayName"></span>
+   </em></h1>
+    <h2>ToDo Calander</h2>
+    <datepicker  ng-model="ac.mydate" md-placeholder="enter date"></datepicker>
+  </small>
+  <p class="lead" ng-bind="article.content"></p>
+</section>
