@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
   validator = require('validator'),
   Schema = mongoose.Schema;
+  //User = require('./User');
 
 /**
  * A Validation function for local strategy email
@@ -18,7 +19,7 @@ var validateLocalStrategyEmail = function (email) {
  * Article Schema
  */
 var ArticleSchema = new Schema({
-  agent: {
+  /*agent: {
     type: String,
     required: 'Please enter Agents Name',
     unique: false
@@ -31,39 +32,30 @@ var ArticleSchema = new Schema({
     type: String,
     required: [true, 'Please enter a last name'],
   },
-  clientID: {
-    type: String,
-    unique: 'Username already exists',
-    required: 'Please fill in a username',
-    lowercase: true,
-    trim: true
-  },
+
   title: {
     type: String,
     enum: ['Mr.', 'Mrs.', 'Ms.', 'Dr.', ''],
   },
-  email: {
-    type: String,
-    unique: true,
-    lowercase: true,
-    trim: true,
-    default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
-  },
+ 
   phone: {
-    type: String/*,
-         validate :  {
-         validator : function(v,cb){
-         setTimeout(function()   {
-         cb(/\d{3}-\d{3}\-d{4}/.test(v));
-         }, 5);
-         },
-         message: 'Please enter as 000-000-0000'
-         }*/
-  },
+    type: String
+  },*/
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+   email: {						///just until MLAB signin
+    type: String,
+    lowercase: true,
+    trim: true,
+    default: Date.now,
+  },
+    clientID: {					//just until MLAB signin
+    type: String,
+    lowercase: true,
+	default: Date.now,
+    trim: true
   },
   created_at: {
     type: Date,
@@ -103,12 +95,27 @@ var ArticleSchema = new Schema({
     required: true,
     unique: true
   },
-  seller: {
-    type: String,
-    required: false,
-    default: ''
+  /*buyeragent: [User],
+  selleragent: [User],
+  buyer: [User],
+  seller: [User]*/
+  buyeragent: {
+    type: Schema.ObjectId,
+	ref: 'User'
   },
-  contract: [{
+  selleragent: {
+    type: Schema.ObjectId,
+	ref: 'User'
+  },
+  buyer: {
+    type: Schema.ObjectId,
+	ref: 'User'
+  },
+  seller: {
+    type: Schema.ObjectId,
+	ref: 'User'
+  },
+ /* contract: [{
     active: Date,
     pastActive: Boolean,
     todoDate: Date
@@ -122,7 +129,7 @@ var ArticleSchema = new Schema({
     active: Date,
     pastActive: Boolean,
     todoDate: Date
-  }]
+  }]*/
 });
 
 mongoose.model('Article', ArticleSchema);
