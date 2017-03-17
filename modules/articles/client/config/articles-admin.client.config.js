@@ -1,4 +1,4 @@
-﻿(function () {
+﻿/*(function () {
   'use strict';
 
   // Configuring the Articles Admin module
@@ -15,3 +15,4 @@
     });
   }
 }());
+*/
