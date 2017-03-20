@@ -59,6 +59,36 @@ exports.delete = function (req, res) {
  * List of Users
  */
 exports.list = function (req, res) {
+//	console.log(req.query.email);
+	if(req.query.email) {
+		console.log(req.query.email);
+User.findOne({
+    email: req.query.email
+}).exec(function(err, user) {
+	console.log(user);
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    //if (!user) return next(new Error('Failed to load User ' + username));
+	//add functionality to create new user and send them an email to get set up.
+    res.json(user);
+});
+	}
+else if(req.query.userId) {
+	console.log("query by ID");
+	User.findById(req.query.userId, '-salt -password').exec(function (err, user) {
+    if (err) {
+      res.json(err);
+    } else if (!user) {
+      //userDNE
+    }
+res.json(user);
+  });
+} else {
+	console.log(req.query);
+	console.log("normal find users");
   User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
     if (err) {
       return res.status(400).send({
@@ -67,7 +97,7 @@ exports.list = function (req, res) {
     }
 
     res.json(users);
-  });
+});}
 };
 
 /**
@@ -90,4 +120,22 @@ exports.userByID = function (req, res, next, id) {
     req.model = user;
     next();
   });
+};
+
+
+/*
+* user middleware for userId from Email
+* */
+exports.userByEmail = function(req, res, next, email) {
+	console.log("UserByEmail hit!!!!");
+User.findOne({
+    email: email
+}, '_id').exec(function(err, user) {
+	console.log(user);
+    if (err) return next(err);
+    if (!user) return next(new Error('Failed to load User ' + username));
+	//add functionality to create new user and send them an email to get set up.
+    req.user = user;
+    next();
+});
 };

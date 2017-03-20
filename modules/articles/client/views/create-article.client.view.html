@@ -10,40 +10,28 @@
             <i class="glyphicon glyphicon-user"></i>
           </div>
           <div class="col-sm-6 ">
-            <label class="control-label" for="agent">Agent Name</label>
+            <label class="control-label" for="agentrole">You are agent for:</label>
             <div class="controls">
-              <input name="agent" type="text" data-ng-model="agent" id="agent" class="form-control">
+				<select name="agentrole" data-ng-model="agentrole" id="agentrole" class="form-control"/>
+					<option value="Buyer">Buyer</option>
+					<option value="Seller">Seller</option>
+				</select>
             </div>
-            <label class="control-label" for="buyerFirst">Byer First Name</label>
+			
+            <label class="control-label" for="agentEmail">Other agent email:</label>
             <div class="controls">
-
-              <input name="buyerFirst" type="text" data-ng-model="buyerFirst" id="buyerFirst" class="form-control">
-            </div>
-
-            <label class="control-label" for="buyerLast">Buyer Last Name</label>
-            <div class="controls">
-
-              <input name="buyerLast" type="text" data-ng-model="buyerLast" id="buyerLast" class="form-control">
+              <input name="agentEmail" type="text" data-ng-model="agentEmail" id="agentEmail" class="form-control">
             </div>
 
-            <label class="control-label" for="buyerLast">Client ID</label>
+            <label class="control-label" for="buyer">Buyer Email</label>
             <div class="controls">
-
-              <input name="clientID" type="text" data-ng-model="clientID" id="clientID" class="form-control">
+              <input name="buyer" type="text" data-ng-model="buyer" id="buyer" class="form-control">
             </div>
 
-            <label class="control-label" for="seller">Email</label>
+            <label class="control-label" for="seller">Seller Email</label>
             <div class="controls">
-
-              <input name="email" type="text" data-ng-model="email" id="email" class="form-control">
-            </div>
-
-            <label class="control-label" for="seller">Seller</label>
-            <div class="controls">
-
               <input name="seller" type="text" data-ng-model="seller" id="seller" class="form-control">
             </div>
-
 
             <label class="control-label" for="mlsCode">MLS Code</label>
             <div class="controls">

@@ -101,3 +101,20 @@ exports.changeProfilePicture = function (req, res) {
 exports.me = function (req, res) {
   res.json(req.user || null);
 };
+
+/*
+* user middleware for userId from Email
+* */
+exports.userByEmail = function(req, res, next, email) {
+	console.log("UserByEmail hit!!!!");
+User.findOne({
+    email: email
+}, '_id').exec(function(err, user) {
+	console.log(user);
+    if (err) return next(err);
+    if (!user) return next(new Error('Failed to load User ' + username));
+	//add functionality to create new user and send them an email to get set up.
+    req.user = user;
+    next();
+});
+};

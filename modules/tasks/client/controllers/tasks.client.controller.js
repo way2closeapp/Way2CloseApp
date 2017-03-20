@@ -22,24 +22,22 @@
     // Remove existing Task
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.task.$remove($state.go('singledashboard'
-		, {propertyId: $stateParams.propertyId}
+        vm.task.$remove($state.go('articles.view'
+		, {articleId: $stateParams.articleId}
 		));
       }
     }
 
 	// Mark Existing Task as Completed
 	function complete() {
-		alert("completing...");
 		vm.task.complete = true;
 		vm.task.completed_on = new Date();
 		vm.task.$update(successCallback, errorCallback);
 
       function successCallback(res) {
-		  alert("Marked Complete");
-        //$state.go('singledashboard'
-		//, {propertyId: res.property}
-		//);
+        $state.go('articles.view'
+		, {articleId: $stateParams.articleId}
+		);
       }
 
       function errorCallback(res) {
@@ -59,14 +57,14 @@
       if (vm.task._id) {
         vm.task.$update(successCallback, errorCallback);
       } else {
-		vm.task.property = $stateParams.propertyId;
+		vm.task.property = $stateParams.articleId;
         vm.task.$save(successCallback, errorCallback);
       }
 
       function successCallback(res) {
 		  //alert(res.property);
-        $state.go('singledashboard'
-		, {propertyId: res.property}
+        $state.go('articles.view'
+		, {articleId: res.property}
 		);
       }
 

@@ -26,7 +26,7 @@ var TaskSchema = new Schema({
   },
   property: {
 	  type: Schema.ObjectId,
-	  ref: 'Property'
+	  ref: 'Article'
   },
   responsibility: {
 	  type: String,
