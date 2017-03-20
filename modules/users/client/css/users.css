@@ -34,3 +34,15 @@
   min-height: 150px;
   max-height: 150px;
 }
+.bg-setting{
+  background-color: #8e8d8b;
+  border-radius: 15px;
+  border-bottom-width: thick;
+  border-color: #8e8d8b;
+  margin-top: 20px;
+ }
+a{
+  color:ghostwhite;
+  
+}
+

@@ -12,7 +12,15 @@ var _ = require('lodash'),
 
 module.exports = function (grunt) {
   // Project Configuration
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.initConfig({
+	  nodeunit: {
+    all: ['test/*_test.js']
+  },
+	  jshint: {
+            all: ['Gruntfile.js']
+        },
     pkg: grunt.file.readJSON('package.json'),
     env: {
       test: {

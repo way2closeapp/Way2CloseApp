@@ -8,11 +8,16 @@
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-asterisk"></i>
           </span>
+
           <div class="form-group" show-errors>
             <input type="text" id="firstName" name="firstName" class="form-control" ng-model="credentials.firstName" placeholder="First Name" required>
             <div ng-messages="userForm.firstName.$error" role="alert">
               <p class="help-block error-text" ng-message="required">First name is required.</p>
             </div>
+
+         <!--Pat </div>
+        </div>-->
+
           </div>
         </div>
         </br>
@@ -27,23 +32,30 @@
             </div>
           </div>
         </div>
+
+
+
         </br>
         <div class="input-group ">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-asterisk"></i>
           </span>
+
           <div class="form-group" show-errors>
+
             <input type="text" id="company" name="company" class="form-control" ng-model="credentials.username" placeholder="Company Name" lowercase required>
             <div ng-messages="userForm.username.$error" role="alert">
             </div>
           </div>
         </div>
+
         </br>
         <div class="input-group ">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-asterisk"></i>
           </span>
           <div class="form-group" show-errors>
+
             <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
             <div ng-messages="userForm.email.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Email address is required.</p>
@@ -51,30 +63,40 @@
             </div>
           </div>
         </div>
+
+        </div>
+
         </br>
         <div class="input-group ">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-asterisk"></i>
           </span>
+
           <div class="form-group" show-errors>
             <input type="text" id="username" name="username" class="form-control" ng-model="credentials.username" placeholder="Username" lowercase required>
             <div ng-messages="userForm.username.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Username is required.</p>
             </div>
+
+
+         <!-- ? </div>
+
+        </div>-->
+
           </div>
 
         </div>
 
-
-
-
+        </div>
 
         </br>
         <div class="input-group ">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-asterisk"></i>
           </span>
+
           <div class="form-group" show-errors>
+
             <input type="password" id="password" name="password" class="form-control" ng-model="credentials.password" placeholder="Password" popover="{{popoverMsg}}" popover-trigger="focus" password-validator required>
             <div ng-messages="userForm.password.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Password is required.</p>
@@ -84,9 +106,12 @@
             </div>
           </div>
         </div>
+
+     
+
         </br>
         <div class="input-group ">
-          <label/> Roll select:
+          <label/> Role select:
           <select name="role" ng-model="role" class="form-control"/>
           <option value="Buyer">Admin</option>
           <option value="Seller">User</option>
@@ -94,6 +119,7 @@
 
         </div>
         </br>
+
         <div class="form-group" ng-show="!userForm.password.$error.required">
           <label>Password Requirements</label>
           <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>
