@@ -21,7 +21,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       })
       .state('multidashboard', {
         url: '/',
-        templateUrl: 'modules/core/client/views/multidashboard.client.view.html',
+        templateUrl: 'modules/articles/client/views/list-articles.client.view.html', //'modules/core/client/views/multidashboard.client.view.html',
         controller: 'CreatepropertyController',
         controllerAs: 'vm'
       })

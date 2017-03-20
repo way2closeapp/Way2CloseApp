@@ -27,7 +27,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
 
       if (!allowed) {
         event.preventDefault();
-        if (Authentication.user !== undefined && typeof Authentication.user === 'object') {
+        if (Authentication.user != undefined && typeof Authentication.user == 'object') {
           $state.go('forbidden');
         } else {
           $state.go('authentication.signin').then(function () {

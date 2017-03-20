@@ -49,3 +49,29 @@ a:hover .header-profile-image {
 p {
   color: ghostwhite;
 }
+
+/*View Single Property ("Article") Styling*/
+.articleNav {
+	float: right;
+}
+
+.articleInfo {
+	float: left;
+	text-align: left;
+}
+
+.green {
+	color: green !important;
+}
+
+.red {
+	color: red !important;
+}
+
+
+
+
+
+
+
+
