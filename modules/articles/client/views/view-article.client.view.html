@@ -1,4 +1,4 @@
-<section ng-controller="ArticlesFindOneController" ng-init="findOne()">
+<!--<section ng-controller="ArticlesFindOneController" ng-init="findOne()">
   <div class="page-header">
     <h1 ng-bind="article.agent"></h1>
   </div>
@@ -21,4 +21,53 @@
     <datepicker  ng-model="ac.mydate" md-placeholder="enter date"></datepicker>
   </small>
   <p class="lead" ng-bind="article.content"></p>
+</section>-->
+
+
+
+<section ng-controller="ArticlesFindOneController" ng-init="findOne()">
+  <div class="jumbotron text-center">
+	<div class="articleNav">
+		<a href="{{article._id}}/tasks/create">Add Tasks</a>
+		<a class="btn btn-primary" ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<div class="articleInfo">
+        <h2 class="row" ng-bind="article.street">{{article.street}}</h2>
+		<div class="row">
+			<h3>{{article.city}}, {{article.state}}      {{article.zip}}<span class="pull-right">{{article.mlsCode}}</span></h3>
+		</div>
+		<h3 class="row"></h3>
+	</div>
+		<!--<a href="{{article._id}}/tasks">Add or Edit Tasks</a>-->
+		<table class="table">
+			<thead>
+				<th><h3>Task Name</h3></th>
+				<th><h3>Added</h3></th>
+				<th><h3>Deadline</h3></th>
+				<th><h3>Completed?</h3></th>
+			</thead>
+			<tbody>
+			<tr ng-repeat="task in mytasks[0]" ng-href="./{{article._id}}/tasks/{{task._id}}">
+				<td><h3 ng-bind="task.name">Task Name</h3></td>
+				<td><h3 ng-bind="task.created | date:'MM/dd/yyyy'">Added</h3></td>
+				<td><h3 ng-bind="task.due | date:'MM/dd/yyyy'">Deadline</h3></td>
+				<td><h3><a class="btn btn-primary" ng-click="complete(task);" ng-bind="task.complete"></a></h3></td>
+			</tr>
+			</tbody>
+		</table>
+		
+		
+		<div class="border row">
+			<div class="border col-sm-4" ng-repeat="userTasks in tasks">
+				<h2 ng-bind="roles[$index]">{{roles[$index]}}</h2>
+				<a ng-repeat="task in userTasks" ng-href="./{{article._id}}/tasks/{{task._id}}" class="list-group-item">
+					<h4 ng-class='{red : !task.complete, green: task.complete}' class="list-group-item-heading">{{task.name}}</h4>
+				</a>
+			</div>
+		</div>
+
+  </div>
+
 </section>

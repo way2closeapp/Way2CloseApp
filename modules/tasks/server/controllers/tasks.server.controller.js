@@ -46,7 +46,9 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var task = req.task;
-
+	if(req.complete) {
+		task.complete = true;
+	}
   task = _.extend(task, req.body);
 
   task.save(function(err) {

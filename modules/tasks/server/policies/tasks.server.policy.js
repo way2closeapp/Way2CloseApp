@@ -28,10 +28,10 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/tasks',
-      permissions: ['get', 'post']
+      permissions: ['get', 'post', 'put']
     }, {
       resources: '/api/tasks/:taskId',
-      permissions: ['get']
+      permissions: ['get', 'put', 'post']
     }, {
 		resources: '/api/tasks/property/:pId',
   permissions: '*'}]
@@ -39,10 +39,10 @@ exports.invokeRolesPolicies = function () {
     roles: ['guest'],
     allows: [{
       resources: '/api/tasks',
-      permissions: ['get']
+      permissions: ['get', 'put', 'post']
     }, {
       resources: '/api/tasks/:taskId',
-      permissions: ['get']
+      permissions: ['get', 'put', 'post']
     }, {
 		resources: '/api/tasks/property/:pId',
   permissions: '*'}]
