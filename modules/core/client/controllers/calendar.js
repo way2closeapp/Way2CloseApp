@@ -363,3 +363,4 @@ angular.module('ui.calendar', [])
         }
     ]
 );
+var app = angular.module('ui.calendar', []);

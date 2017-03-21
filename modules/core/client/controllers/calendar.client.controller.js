@@ -1,9 +1,9 @@
 /**
  * calendarDemoApp - 0.9.0
  */
-var calendarDemoApp = angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
+//var calendarDemoApp = angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
 
-calendarDemoApp.controller('CalendarCtrl',
+angular.module('core').controller('CalendarController', ['$scope', '$compile', '$timeout',  
    function($scope, $compile, $timeout, uiCalendarConfig) {
     var date = new Date();
     var d = date.getDate();
@@ -131,5 +131,5 @@ calendarDemoApp.controller('CalendarCtrl',
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
-});
+}]);
 /* EOF */
