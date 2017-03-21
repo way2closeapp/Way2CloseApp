@@ -22,6 +22,8 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
 		resources: '/api/tasks/property/:pId',
+  permissions: '*'}, {
+		resources: '/api/tasksbyuser',
   permissions: '*'}
   ]
   }, {
@@ -34,6 +36,8 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'put', 'post']
     }, {
 		resources: '/api/tasks/property/:pId',
+  permissions: '*'}, {
+		resources: '/api/tasksbyuser',
   permissions: '*'}]
   }, {
     roles: ['guest'],
@@ -45,6 +49,8 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'put', 'post']
     }, {
 		resources: '/api/tasks/property/:pId',
+  permissions: '*'}, {
+		resources: '/api/tasksbyuser',
   permissions: '*'}]
   }]);
 };
