@@ -1,15 +1,15 @@
-'use strict';
+/**
+ * calendarDemoApp - 0.9.0
+ */
+//var calendarDemoApp = angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
 
-angular.module('core').controller('CalendarController', ['$scope', 'ui-calendar', 'ui.bootstrap', 'Authentication',
-  function ($scope, Authentication, $compile, uiCalendarConfig) {
-    // This provides Authentication context.
-    $scope.authentication = Authentication;
-
+angular.module('core').controller('CalendarController', ['$scope', '$compile', '$timeout',  
+   function($scope, $compile, $timeout, uiCalendarConfig) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-    
+
     $scope.changeTo = 'Hungarian';
     /* event source that pulls from google.com */
     $scope.eventSource = {
@@ -38,7 +38,7 @@ angular.module('core').controller('CalendarController', ['$scope', 'ui-calendar'
     $scope.calEventsExt = {
        color: '#f00',
        textColor: 'yellow',
-       events: [ 
+       events: [
           {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
           {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
           {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
@@ -50,7 +50,7 @@ angular.module('core').controller('CalendarController', ['$scope', 'ui-calendar'
     };
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-       $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
+       $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
@@ -87,15 +87,17 @@ angular.module('core').controller('CalendarController', ['$scope', 'ui-calendar'
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
     };
     /* Change View */
-    $scope.renderCalender = function(calendar) {
-      if(uiCalendarConfig.calendars[calendar]){
-        uiCalendarConfig.calendars[calendar].fullCalendar('render');
-      }
+    $scope.renderCalendar = function(calendar) {
+      $timeout(function() {
+        if(uiCalendarConfig.calendars[calendar]){
+          uiCalendarConfig.calendars[calendar].fullCalendar('render');
+        }
+      });
     };
      /* Render Tooltip */
-    $scope.eventRender = function( event, element, view ) { 
+    $scope.eventRender = function( event, element, view ) {
         element.attr({'tooltip': event.title,
-                     'tooltip-append-to-body': true});
+                      'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
     /* config object */
@@ -129,7 +131,5 @@ angular.module('core').controller('CalendarController', ['$scope', 'ui-calendar'
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
-
+}]);
 /* EOF */
-    }
-]);
