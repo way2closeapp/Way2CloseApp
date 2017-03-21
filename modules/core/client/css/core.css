@@ -68,6 +68,11 @@ p {
 	color: red !important;
 }
 
+.role {
+	display: block;
+	float: left;
+}
+
 
 
 

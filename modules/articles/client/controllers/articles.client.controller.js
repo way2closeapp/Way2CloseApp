@@ -115,7 +115,18 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
       $scope.article = Articles.get({
         articleId: $stateParams.articleId
       });
-	  $scope.getTasks();
+	  $scope.article.$promise.then(function(result) {
+		 $scope.article = result;
+		 var id = $scope.authentication.user._id;
+		 if(id == $scope.article.buyeragent) {$scope.role = 0;}
+			else if (id == $scope.article.selleragent) {$scope.role = 1;}
+			else if (id == $scope.article.buyer) {$scope.role = 2;}
+			else if (id == $scope.article.seller) {$scope.role = 3;}
+		$scope.roles = ["Buyer's Agent", "Seller's Agent", "Buyer", "Seller"];
+		$scope.roleName = $scope.roles.splice($scope.role, 1)[0];
+			  $scope.getTasks();
+	  });
+
     };
         // Remove existing Article
     $scope.remove = function () {
@@ -175,10 +186,9 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
 
 		task.complete = true;
 		task.completed_on = new Date();
-				alert(JSON.stringify(task));
 		$http.put('/api/tasks/'+task._id, {task: task, complete: true}, $scope.config).
 		success(function(data, status, headers, config) {
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
     }).
     error(function(data, status, headers, config) {
 		alert("error");

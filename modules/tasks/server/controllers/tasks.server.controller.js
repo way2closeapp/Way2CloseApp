@@ -6,6 +6,8 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Task = mongoose.model('Task'),
+  User = mongoose.model('User'),
+  Article = mongoose.model('Article'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -15,8 +17,18 @@ var path = require('path'),
 exports.create = function(req, res) {
   var task = new Task(req.body);
   task.user = req.user;
-
-  task.save(function(err) {
+  Article.findById(req.body.property).exec(function (err, article) {
+    if (err) {
+      console.log("23" + err);
+    } else if (!article) {
+      console.log("article not found");
+    } else{
+    var resp = req.body.responsibility;
+	if(resp == "buyeragent") {task.resUID = article.buyeragent;}
+	else if(resp == "selleragent") {task.resUID = article.selleragent;}
+	else if (resp == "buyer") {task.resUID = article.buyer;}
+	else {task.resUID = article.seller;}
+	  task.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -24,6 +36,7 @@ exports.create = function(req, res) {
     } else {
       res.jsonp(task);
     }
+  });}
   });
 };
 
@@ -173,3 +186,20 @@ exports.taskByID = function(req, res, next, id) {
     next();
   });
 };
+
+exports.byUser = function(req, res) {
+console.log("fetching tasks by UID..." + req.user._id);
+Task.find({resUID: req.user._id}).exec(function (err, tasks) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+		console.log(tasks);
+      res.json(tasks);
+    }
+  });
+};
+
+
+

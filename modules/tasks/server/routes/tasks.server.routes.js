@@ -18,7 +18,10 @@ app.route('/api/tasks/property/:pId').all(tasksPolicy.isAllowed)
     .get(tasks.read)
     .put(tasks.update)
     .delete(tasks.delete);
-
+app.route('/api/tasksbyuser').all(tasksPolicy.isAllowed)
+	.post(tasks.byUser)
+	.get(tasks.byUser)
+	.put(tasks.byUser);
   // Finish by binding the Task middleware
   app.param('taskId', tasks.taskByID);
   app.param('pId', tasks.listProperty);
