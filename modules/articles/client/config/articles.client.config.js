@@ -4,7 +4,7 @@
 angular.module('articles').run(['Menus',
   function (Menus) {
     // Add the articles dropdown item
-   /* Menus.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'Create Property',
       state: 'articles',
       type: 'dropdown',
@@ -22,6 +22,6 @@ angular.module('articles').run(['Menus',
       title: 'Create Properties',
       state: 'articles.create',
       roles: ['admin']
-    });*/
+    });
   }
 ]);
