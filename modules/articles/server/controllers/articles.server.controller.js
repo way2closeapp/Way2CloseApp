@@ -58,7 +58,7 @@ exports.create = function (req, res) {
 			"<p>An account has been created for you at Way2Close. You have been added"+
 			" to the property at " + req.body.street + ". </p>" +
 			"<p>Please sign in at way2close.herokuapp.com/settings/profile" +
-			" using this email and " + pw + " as your password, then edit your profile to reflect your information." +
+			" using this email and " + pw + " as your password, then ed tion." +
 			"<h3>Regards,</h3><h4>The Way2Close Team</h4></body>" +
 			"<footer>Please do not reply to this email.</footer>" + 
 			"</html>";

@@ -22,24 +22,43 @@ rule.minute = 0;
 
 var j = schedule.scheduleJob(rule, function(){
     var today = new Date(); /*set today to the date. Inside the function to constantly reset today*/
-
     db.Task.aggregate(
         [
-            {
-                $match : {due: today, complete: false} /* Due today and not completed*/
-            },
-            {
-                $group: {email: "$resUID.email", property: "$property.street", tasks: {$push: "$name"}} /*group by ID, then by property (for agents with tasks from different properties, then array the tasks for each property*/
-
-            }
+            /* Due today and not completed*/
+            {$match : {due: today, complete: false}},
+            /*group by ID, then by property (for agents with tasks from different properties, then array the tasks for each property*/
+            {$group: {email: "$resUID.email", property: "$property.street", subscribed:"$resUID.subscribed", tasks: {$push: "$name"}}}
         ],
         function(err, result){
-            for(var email in result){         /*loop through the object by email*/
+            for(var email in result) {
+                if (result.subscribed = true) {
+                    var tasklist = "";
+                    for(var task in result.tasks){
+                        tasklist = task + " ";
+                    }
+                    /*loop through the object by email*/
+                    var passage = "<!DOCTYPE html><html lang='en-US'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head>" +
+                        "<body><h3>Hello!</h3>" +
+                        "<p>You have a task(s) due today for the property at " + result.property + ": </p>" +
+                        tasklist +
+                        "<p>If you have already completed this task(s), please sign in at way2close.herokuapp.com/settings/profile" +
+                        " and mark the task as complete. If you would like to stop receiving notices from Way2Close, please follow" +
+                        " this link " + link +
+                        "<h3>Regards,</h3><h4>The Way2Close Team</h4></body>" +
+                        "<footer>Please do not reply to this email.</footer>" +
+                        "</html>";
+                    transporter.sendMail({
+                        from: "way2closeapp@gmail.com",
+                        to: email,
+                        subject: 'Upcoming task from Way2Close',
+                        html: passage
+                    }, (err, info) => {
+                        if(err) {console.log("62 email " + err);}
+                        else {console.log("message sent successfully to: " + email);}
+                });
+                }
 
-                } )
-
-
-
+            }
         }
     )
 });

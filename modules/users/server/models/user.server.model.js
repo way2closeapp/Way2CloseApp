@@ -88,6 +88,10 @@ var UserSchema = new Schema({
     }]
 
   },
+  subscribed: {
+    type: Boolean,
+    default: true
+  },
   updated: {
     type: Date
   },
