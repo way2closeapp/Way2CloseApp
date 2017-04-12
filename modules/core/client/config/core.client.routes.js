@@ -13,12 +13,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
-      .state('calendar', {
-        url: '/calendar',
-        templateUrl: 'modules/core/client/views/calendar.client.view.html',
-        controller: 'CalendarController',
-        controllerAs: 'vm'
-      })
       .state('multidashboard', {
         url: '/',
         templateUrl: 'modules/articles/client/views/list-articles.client.view.html', //'modules/core/client/views/multidashboard.client.view.html',

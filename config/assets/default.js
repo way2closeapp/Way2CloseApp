@@ -5,9 +5,11 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+		'public/lib/fullcalendar/dist/fullcalendar.css'
       ],
       js: [
+	    'public/lib/jquery/dist/jquery.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
@@ -16,7 +18,10 @@ module.exports = {
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
-        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js'
+        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+		'public/lib/moment/moment.js',
+        'public/lib/fullcalendar/dist/fullcalendar.js',
+        'public/lib/angular-ui-calendar/src/calendar.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
