@@ -8,9 +8,9 @@
 /*
 Here are the dependency injections for this controller. CalendarService is the service defined in this module. This will create new calendar event resources when we add new events. Authentication holds onto information about whether the user is logged in. We'll use this information in the view to decide what to display and what not to display, so we want to attach it to the model here in the controller.
 */
-  CalendarController.$inject = ['CalendarService', 'Authentication'];
+  CalendarController.$inject = ['CalendarService', 'Authentication', '$http', 'PTasksService'];
 
-  function CalendarController(CalendarService, Authentication) {
+  function CalendarController(CalendarService, Authentication, $http, PTasksService) {
 
     var vm = this;
 
@@ -119,11 +119,12 @@ Here are the dependency injections for this controller. CalendarService is the s
       */
 
       var newEvent = new CalendarService({
+        //created: ,
         title: 'Coffee Break',
+        type: 'complete',
         start: vm.selectedDate.local(),
-        end: vm.selectedDate.local(),
-        className: ['coffeeBreak'],
-        stick: true
+        //end: vm.selectedDate.local(),
+        className: ['property address']
       });
 
       newEvent.$save(function(data) {
@@ -170,11 +171,57 @@ Here are the dependency injections for this controller. CalendarService is the s
       }
     };
 
+    /*Code copied from articles.client.controller.js
+    * Pulls tasks by user and converts to calendar events
+    * Changed all $scope to vm*/
+    vm.getTasks = function() {
+      /*not needed here
+      $scope.data = {
+        id: $stateParams.articleId
+      };*/
+      vm.config = {
+        headers : {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+      };
+      //Changed 'api/tasks/property/'+$scope.data.id to 'api/tasksbyuser/' to pull by user
+      $http.post('api/tasksbyuser/', vm.data, vm.config).
+        success(function(data, status, headers, config) {
+          //$scope.tasks = data;
+          //New code for slotting task properties to event properties
+          vm.calTasks = [];
+          for(var i=0; i<data.length; i++) {
+            var completed;
+            if(data[i].complete){completed = 'completed';}
+            else{completed = 'incomplete';}
+            var address = data[i].property.street + ', ' + data[i].property.city + ', ' + data[i].property.state
+              + ' ' + data[i].property.zip;
+            //Adapted sample event creation from vm.addEvent
+            var newEvent = new CalendarService({
+              created: data[i].created,
+              title: data[i].name,
+              type: completed,
+              start: data[i].due,
+              user: data[i].user,
+              className: [address]
+            });
+            newEvent.$save(function(data) {
+              newEvent._id = data[i]._id;
+              vm.calTasks.push(newEvent);
+              vm.setCustomInds(vm.calTasks);
+            });
+          }
+        }).
+          error(function(data, status, headers, config) {
+              alert("error")
+              alert(JSON.stringify(data));
+          });
+      };
     /*
     Various event sources can be combined. See the Angular-UI-Calendar demo
     for an example of how to combine locally-stored events with a collection of
     events drawn from Google Calendar.
     */
-    vm.eventSources = [vm.calEvents];
+    vm.eventSources = [vm.calTasks];//[vm.calEvents];
   }
 }());

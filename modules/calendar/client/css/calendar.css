@@ -5,3 +5,8 @@ td.select-highlight {
 input.eventtext {
   width: 140px
 }
+
+.fc-event {
+  border: 1px solid #dd3824;
+  background-color: #dd3824;
+}

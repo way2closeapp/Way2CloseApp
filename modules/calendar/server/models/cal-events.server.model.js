@@ -10,35 +10,35 @@ var mongoose = require('mongoose'),
  * CalEvent Schema
  */
 var CalEventSchema = new Schema({
-  created: {
+  created: { //Date task.created
     type: Date,
     default: Date.now
   },
-  title: {
+  title: { //String task.name
     type: String,
     default: '',
     trim: true,
     required: 'Title cannot be blank'
   },
-  url: {
+  url: { //unused
     type: String,
     default: '',
     trim: true
   },
-  type: {
+  type: { //Boolean task.complete
     type: String,
     default: '',
     trim: true
   },
-  allDay: Boolean,
-  start: Date,
-  end: Date,
+  allDay: Boolean, //unused
+  start: Date, //Date task.due
+  end: Date, //unused
   stick: { type: Boolean, default: true },
-  user: {
+  user: { //Schema.ObjectId task.user
     type: Schema.ObjectId,
     ref: 'User'
   },
-  className: [String]
+  className: [String] //Schema.ObjectId task.property String street + city + state + Number zip
 });
 
 mongoose.model('CalEvent', CalEventSchema);
