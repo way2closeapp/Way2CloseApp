@@ -20,7 +20,8 @@
         controller: 'CalendarController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Calendar Events List'
+          pageTitle: 'Calendar Events List',
+          roles: ['user','admin']
         }
       });
   }
