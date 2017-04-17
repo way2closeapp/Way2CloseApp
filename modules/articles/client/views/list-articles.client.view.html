@@ -2,28 +2,25 @@
   <div class="page-header">
     <h1>Active Properties Listings</h1>
   </div>
-  <!--<div class="row">
-  <div class="col-xs-12 col-sm-8">
-  <div class="input-group input-group-lg">
-
-    <input type="text" class="form-control" nm-modle="searchText">
-    <span class="input-group-btn">
-      <button class="btn btn-warning" type="button">GO!</button>
-    </span>
   </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" ng-model="searchText" placeholder="Search...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 text-center">
 
-
-</div>
-  <div class="col-xs-12 col-sm-4 text-center">
-
-      <button type="button" class="btn btn-sm btn-warning text-center">
+      <button type="button" ui-sref="articles.create" class="btn btn-sm btn-warning text-center">
         <i class="glyphicon glyphicon-home"></i> <br>
         New Property
       </button>
     </div>
 
-
-  </div>-->
+  </div>
 <br>
   <br>
 
@@ -42,9 +39,6 @@
         </div>
       </a>
 
-      <small class="list-group-item-text">
-        <span ng-bind="article.user.displayName"></span>
-      </small>
 
     </div>
   </div>

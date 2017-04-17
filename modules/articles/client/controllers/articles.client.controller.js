@@ -10,10 +10,12 @@ propertyApp.controller('ArticlesController', ['$scope', '$stateParams', 'Users',
 		$scope.articles = res;
 		console.log(res);
 		for(var i=0; i<$scope.articles.length; i++) {
+
 		$scope.articles[i].buyer = Users.get({userId:$scope.articles[i].buyer});
 		$scope.articles[i].seller = Users.get({userId:$scope.articles[i].seller});
 		$scope.articles[i].selleragent = Users.get({userId:$scope.articles[i].selleragent});
 		$scope.articles[i].buyeragent = Users.get({userId:$scope.articles[i].buyeragent});
+	//	console.log($scope.articles[i].buyer,$scope.articles[i].buyeragent)
 	}
 	});
 	
@@ -175,7 +177,7 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
 			else if (r == "seller") {$scope.STasks.push(data[i]);}
 		}
 		$scope.tasks = [$scope.BATasks, $scope.SATasks, $scope.BTasks, $scope.STasks];
-		$scope.mytasks = $scope.tasks.splice($scope.role, 1);
+		$scope.mytasks = $scope.tasks;
     }).
     error(function(data, status, headers, config) {
 		alert("error")
