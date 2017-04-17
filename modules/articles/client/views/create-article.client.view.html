@@ -1,34 +1,34 @@
 <section ng-controller="ArticlesCreateController">
   <div class="page-header">
-    <h1>New Property</h1>
+    <div class="panel panel-warning" class="Phead">
+    <div class="panel-heading"> <h1>New Property</h1></div>
+    </div>
   </div>
   <div class="col-md-12">
     <form name="articleForm" class="form-horizontal" ng-submit="create(articleForm.$valid)" novalidate>
       <fieldset>
         <div class="row">
-          <div class="col-sm-6 text-center">
-            <i class="glyphicon glyphicon-user"></i>
-          </div>
-          <div class="col-sm-6 ">
+
+          <div class="col-md-6">
             <label class="control-label" for="agentrole">You are agent for:</label>
             <div class="controls">
-				<select name="agentrole" data-ng-model="agentrole" id="agentrole" class="form-control"/>
-					<option value="Buyer">Buyer</option>
-					<option value="Seller">Seller</option>
-				</select>
+              <select name="agentrole" data-ng-model="agentrole" id="agentrole" class="form-control"/>
+              <option value="Buyer">Buyer</option>
+              <option value="Seller">Seller</option>
+              </select>
             </div>
-			
-            <label class="control-label" for="agentEmail">Other agent email:</label>
+
+            <label class="control-label" for="agentEmail">Client Email:</label>
             <div class="controls">
               <input name="agentEmail" type="text" data-ng-model="agentEmail" id="agentEmail" class="form-control">
             </div>
 
-            <label class="control-label" for="buyer">Buyer Email</label>
+            <label class="control-label" for="buyer">Enter e-mail to notify of tasks</label>
             <div class="controls">
               <input name="buyer" type="text" data-ng-model="buyer" id="buyer" class="form-control">
             </div>
 
-            <label class="control-label" for="seller">Seller Email</label>
+            <label class="control-label" for="seller">Enter e-mail to notify of tasks</label>
             <div class="controls">
               <input name="seller" type="text" data-ng-model="seller" id="seller" class="form-control">
             </div>
@@ -38,9 +38,34 @@
 
               <input name="mlsCode" type="text" data-ng-model="mlsCode" id="mlsCode" class="form-control">
             </div>
-          </div>
+
+
+
+            </div>
+
+            </div>
+            <div ng-show="error" class="text-danger">
+              <strong ng-bind="error"></strong>
+            </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <label class="control-label" for="city">City</label>
+            <div class="controls">
+
+              <input name="city" type="text" data-ng-model="city" id="city" class="form-control">
+            </div>
+
+            <label class="control-label" for="zip">ZIP</label>
+            <div class="controls">
+
+              <input name="zip" type="text" data-ng-model="zip" id="zip" class="form-control">
+            </div>
+        </div>
+        </div>
           <div class="row">
-            <div class="col-sm-3 col-sm-push-6">
+
+            <div class="col-md-6">
               <label class="control-label" for="street">Street</label>
               <div class="controls">
 
@@ -53,36 +78,15 @@
 
                 <input name="state" type="text" data-ng-model="state" id="state" class="form-control">
               </div>
-
-            </div>
-            <div class="col-sm-3 col-sm-push-6">
-              <label class="control-label" for="city">City</label>
-              <div class="controls">
-
-                <input name="city" type="text" data-ng-model="city" id="city" class="form-control">
+              <div class="pad">
+                <button type="submit" class="btn btn-warning">Add Property</button>
               </div>
-
-              <label class="control-label" for="zip">ZIP</label>
-              <div class="controls">
-
-                <input name="zip" type="text" data-ng-model="zip" id="zip" class="form-control">
-              </div>
+            </div>
 
             </div>
-          </div>
-          <div class="row">
 
+          </div>
 
-            <div class="col-sm-6">
-
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="submit" class="btn btn-success">
-          </div>
-          <div ng-show="error" class="text-danger">
-            <strong ng-bind="error"></strong>
-          </div>
       </fieldset>
     </form>
   </div>

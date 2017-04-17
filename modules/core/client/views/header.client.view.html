@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
     </button>
     <!-- Pat <a ui-sref="home" class="navbar-brand">Waz 2 Close</a>-->
-    <a ui-sref="multidashboard" class="navbar-brand">Way 2 Close</a>
+    <a ui-sref="home" class="navbar-brand">Way 2 Close</a>
   </div>
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
@@ -56,9 +56,7 @@
         </ul>
       </li>
     </ul>
-	<a ui-sref="articles.create" class="navbar-brand" ng-show="authentication.user">
-    +
-	</a>
+
 	<a ui-sref="calendar" class="nav navbar-nav navbar-brand navbar-right" ng-show="authentication.user">
     <img src="http://svgshare.com/i/nB.svg"></img>
 	</a>

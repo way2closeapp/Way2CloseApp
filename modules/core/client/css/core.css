@@ -68,10 +68,31 @@ p {
 	color: red !important;
 }
 
+.role {
+	display: block;
+	float: left;
+}
 
 
+.cust {
+    color: #000000;
+    text-decoration: underline;
+    text: bold;
 
 
+}
+.Phead {
+    color: #000000;
 
 
+}
+.panelCust{
+    box-shadow: 4px 4px #f0ad4e;
+}
+
+.pad{
+    padding-top: 10px;
+    padding-bottom: 40px;
+
+}
 

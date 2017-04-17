@@ -65,10 +65,12 @@ propertyApp.controller('ArticlesController', ['$scope', '$stateParams', 'Users',
 		$scope.articles = res;
 		console.log(res);
 		for(var i=0; i<$scope.articles.length; i++) {
+
 		$scope.articles[i].buyer = Users.get({userId:$scope.articles[i].buyer});
 		$scope.articles[i].seller = Users.get({userId:$scope.articles[i].seller});
 		$scope.articles[i].selleragent = Users.get({userId:$scope.articles[i].selleragent});
 		$scope.articles[i].buyeragent = Users.get({userId:$scope.articles[i].buyeragent});
+	//	console.log($scope.articles[i].buyer,$scope.articles[i].buyeragent)
 	}
 	});
 	
@@ -185,7 +187,18 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
       $scope.article = Articles.get({
         articleId: $stateParams.articleId
       });
-	  $scope.getTasks();
+	  $scope.article.$promise.then(function(result) {
+		 $scope.article = result;
+		 var id = $scope.authentication.user._id;
+		 if(id == $scope.article.buyeragent) {$scope.role = 0;}
+			else if (id == $scope.article.selleragent) {$scope.role = 1;}
+			else if (id == $scope.article.buyer) {$scope.role = 2;}
+			else if (id == $scope.article.seller) {$scope.role = 3;}
+		$scope.roles = ["Buyer's Agent", "Seller's Agent", "Buyer", "Seller"];
+		$scope.roleName = $scope.roles.splice($scope.role, 1)[0];
+			  $scope.getTasks();
+	  });
+
     };
 <<<<<<< HEAD
       this.modalCreate = function (size) {
@@ -294,7 +307,7 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
 			else if (r == "seller") {$scope.STasks.push(data[i]);}
 		}
 		$scope.tasks = [$scope.BATasks, $scope.SATasks, $scope.BTasks, $scope.STasks];
-		$scope.mytasks = $scope.tasks.splice($scope.role, 1);
+		$scope.mytasks = $scope.tasks;
     }).
     error(function(data, status, headers, config) {
 		alert("error")
@@ -305,10 +318,9 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
 
 		task.complete = true;
 		task.completed_on = new Date();
-				alert(JSON.stringify(task));
 		$http.put('/api/tasks/'+task._id, {task: task, complete: true}, $scope.config).
 		success(function(data, status, headers, config) {
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
     }).
     error(function(data, status, headers, config) {
 		alert("error");

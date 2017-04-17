@@ -5,25 +5,25 @@
     .module('tasks')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService'];
+  menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+      Menus.addMenuItem('topbar', {
       title: 'Tasks',
       state: 'tasks',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['admin']
     });
 
     // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'tasks', {
+      Menus.addSubMenuItem('topbar', 'tasks', {
       title: 'List Tasks',
       state: 'tasks.list'
     });
 
     // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'tasks', {
+      Menus.addSubMenuItem('topbar', 'tasks', {
       title: 'Create Task',
       state: 'tasks.create',
       roles: ['user']

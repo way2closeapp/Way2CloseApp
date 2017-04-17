@@ -43,77 +43,89 @@ var ArticleSchema = new Schema({
   },*/
   user: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'User',
+	unique: false
   },
    email: {						///just until MLAB signin
     type: String,
     lowercase: true,
     trim: true,
     default: Date.now,
+	unique: false
   },
     clientID: {					//just until MLAB signin
     type: String,
     lowercase: true,
-	default: Date.now,
-    trim: true
+	default: Math.random(),
+    trim: true,
+	unique: false
   },
   created_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+	unique: false
 
   },
   created_by: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'User',
+	unique: false
+	
   },
   updated_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+	unique: false
   },
   updated_by: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'User',
+	unique: false
   },
   street: {
     type: String,
     required: true,
+	unique: false
   },
   city: {
     type: String,
     required: true,
+	unique: false
   },
   state: {
     type: String,
     required: true,
+	unique: false
   },
   zip: {
     type: Number,
     required: true,
+	unique: false
   },
   mlsCode: {
     type: Number,
     required: true,
-    unique: true
+    unique: false
   },
-  /*buyeragent: [User],
-  selleragent: [User],
-  buyer: [User],
-  seller: [User]*/
   buyeragent: {
     type: Schema.ObjectId,
-	ref: 'User'
+	ref: 'User',
+	unique: false
   },
   selleragent: {
     type: Schema.ObjectId,
-	ref: 'User'
+	ref: 'User',
+	unique: false
   },
   buyer: {
     type: Schema.ObjectId,
-	ref: 'User'
+	ref: 'User',
+	unique: false
   },
   seller: {
     type: Schema.ObjectId,
-	ref: 'User'
+	ref: 'User',
+	unique: false
   },
  /* contract: [{
     active: Date,

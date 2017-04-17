@@ -32,6 +32,10 @@ var TaskSchema = new Schema({
 	  type: String,
 	  required: true
   },
+  resUID: {
+	  type: Schema.ObjectId,
+	  ref: 'User'
+  },
   due: {
 	  type: Date,
 	  required: true
