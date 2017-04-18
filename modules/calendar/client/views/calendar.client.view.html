@@ -7,27 +7,29 @@
   </div>
   <div class="well">
       <div class="row">
-          <div class="col-sm-4">
-              <div class="btn-group calTools">
+          <!--div class="col-sm-4">
+              <!--div class="btn-group calTools">
                 <button type="button" class="btn btn-primary" ng-click="vm.addEvent()">
                   Add Event
                 </button>
               </div>
 <p>
               <ul class="list-unstyled">
-                  <li ng-repeat="e in vm.calEvents | filter:vm.selectedDateEvents">
+                  <li ng-repeat="e in vm.calTasks | filter:vm.selectedDateEvents">
                       <div class="alert alert-info">
                           <b> <input ng-model="e.title" class="eventtext" ng-change="vm.update(e)"></b>
+                          <b> <p ng-bind="e.title" class="eventtext"></b>
 
-                          <a class="close" ng-click="vm.remove(e.customIndex)"><i class="glyphicon glyphicon-remove"></i></a>
+                          <p ng-bind="e.type"><p ng-bind="e.classname"><p ng-bind="e.start | date:'MMM dd'">
+            <a class="close" ng-click="vm.remove(e.customIndex)"><i class="glyphicon glyphicon-remove"></i></a>
 
                           <br>
-                          {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+                          {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}<>
                       </div>
                   </li>
               </ul>
-          </div>
-          <div class="col-sm-8">
+          </div-->
+          <div class="cal-frame">
               <div ui-calendar="vm.uiConfig.calendar" class="calendar" ng-model="vm.eventSources"></div>
           </div>
       </div>

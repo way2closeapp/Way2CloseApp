@@ -38,7 +38,7 @@ var CalEventSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  className: [String] //Schema.ObjectId task.property String street + city + state + Number zip
+  className: [String] //unused
 });
 
 mongoose.model('CalEvent', CalEventSchema);
