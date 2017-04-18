@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-<section ng-controller="ArticlesFindOneController as propertyCtrl" ng-init="findOne()">
-=======
 <!--<section ng-controller="ArticlesFindOneController" ng-init="findOne()">
->>>>>>> 091f954e70d1e7c1983866ccfa5ca95e52705127
   <div class="page-header">
     <h1 ng-bind="article.agent"></h1>
   </div>
   <div class="pull-right" ng-show="authentication.user._id == article.user._id">
-    <a ng-click="propertyCtrl.modalCreate('lg')" class="list-group-item">
+    <a class="btn btn-primary" ui-sref="articles.edit({articleId: article._id})">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
     <a class="btn btn-primary" ng-click="remove();">

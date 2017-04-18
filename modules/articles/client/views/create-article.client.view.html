@@ -10,13 +10,6 @@
         <div class="row">
 
           <div class="col-md-6">
-            <label class="control-label" for="agentrole">You are agent for:</label>
-            <div class="controls">
-              <select name="agentrole" data-ng-model="agentrole" id="agentrole" class="form-control"/>
-              <option value="Buyer">Buyer</option>
-              <option value="Seller">Seller</option>
-              </select>
-            </div>
 
             <label class="control-label" for="agentEmail">Client Email:</label>
             <div class="controls">
@@ -50,33 +43,35 @@
 
         <div class="row">
           <div class="col-sm-6">
+            <label class="control-label" for="street">Street</label>
+            <div class="controls">
+
+              <input name="street" type="text" data-ng-model="street" id="street" class="form-control">
+
+            </div>
+
             <label class="control-label" for="city">City</label>
             <div class="controls">
 
               <input name="city" type="text" data-ng-model="city" id="city" class="form-control">
-            </div>
-
-            <label class="control-label" for="zip">ZIP</label>
-            <div class="controls">
-
-              <input name="zip" type="text" data-ng-model="zip" id="zip" class="form-control">
             </div>
         </div>
         </div>
           <div class="row">
 
             <div class="col-md-6">
-              <label class="control-label" for="street">Street</label>
-              <div class="controls">
-
-                <input name="street" type="text" data-ng-model="street" id="street" class="form-control">
-              </div>
-
-
               <label class="control-label" for="state">State</label>
               <div class="controls">
 
                 <input name="state" type="text" data-ng-model="state" id="state" class="form-control">
+
+              </div>
+              <label class="control-label" for="zip">ZIP</label>
+              <div class="controls">
+
+                <input name="zip" type="text" data-ng-model="zip" id="zip" class="form-control">
+
+
               </div>
               <div class="pad">
                 <button type="submit" class="btn btn-warning">Add Property</button>

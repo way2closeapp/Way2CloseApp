@@ -1,66 +1,11 @@
 'use strict';
 var propertyApp = angular.module('articles');
 // Articles controller
-<<<<<<< HEAD
-propertyApp.controller('ArticlesController',  ['$scope', '$stateParams', 'Authentication', 'Articles' ,'$modal', '$log',
-    function ($scope, $stateParams, Authentication, Articles, $modal, $log)  {
-    this.authentication = Authentication;
-      // Find a list of Articles
-
-    this.articles = Articles.query();
-        // Find existing Article
-        $scope.findOne = function () {
-            $scope.article = Articles.query({
-                articleId: $stateParams.articleId
-            });
-        };
-             // Remove existing Article
-         $scope.remove = function (article) {
-           if (article) {
-             article.$remove();
-
-             for (var i in $scope.articles) {
-               if ($scope.articles[i] === article) {
-                $scope.articles.splice(i, 1);
-               }
-             }
-           } else {
-             $scope.article.$remove(function () {
-               $location.path('articles');
-             });
-           }
-         };
-      this.modalCreate = function (size) {
-
-          var modalInstance = $modal.open({
-              templateUrl: 'modules/articles/client/views/view-article.client.view.html',
-              controller: function ($scope, $modalInstance) {
-
-
-                  $scope.ok = function (isValid) {
-                      console.log(isValid);
-                      $modalInstance.close();
-                  };
-
-                  $scope.cancel = function () {
-                      $modalInstance.dismiss('cancel');
-                  };
-              },
-              size: size
-          });
-
-          modalInstance.result.then(function (selectedItem) {
-          }, function () {
-              $log.info('Modal dismissed at: ' + new Date());
-          });
-      };
-
-=======
 propertyApp.controller('ArticlesController', ['$scope', '$stateParams', 'Users', 'Authentication', 'Articles',
   function ($scope, $stateParams, Users, Authentication, Articles) {
     this.authentication = Authentication;
       // Find a list of Articles
-
+    //$scope.sched();
     this.articles = Articles.query().$promise.then(function(res) {
 		$scope.articles = res;
 		console.log(res);
@@ -74,7 +19,6 @@ propertyApp.controller('ArticlesController', ['$scope', '$stateParams', 'Users',
 	}
 	});
 	
->>>>>>> 091f954e70d1e7c1983866ccfa5ca95e52705127
   }]);
 propertyApp.controller('ArticlesCreateController', ['$scope','$location', 'Users', 'Authentication', 'Articles',
   function ($scope, $location, Users, Authentication, Articles) {
@@ -92,13 +36,10 @@ propertyApp.controller('ArticlesCreateController', ['$scope','$location', 'Users
 	  	
 	var buyeragent;
 		var selleragent;
-		 if($scope.agentrole == "Buyer") {
+
 			 buyeragent = $scope.authentication.user.email;
 			selleragent = this.agentEmail;
-		 } else {
-			 selleragent = $scope.authentication.user.email;
-			buyeragent = this.agentEmail;
-		 } 
+
 		 //var rand = Math.random();
 // Create new Article object
       var article = new Articles({
@@ -122,19 +63,6 @@ propertyApp.controller('ArticlesCreateController', ['$scope','$location', 'Users
         $location.path('articles/' + response._id);
 
                 // Clear form fields
-<<<<<<< HEAD
-        // $scope.agent='',
-        //             $scope.firstName='',
-        //             $scope.lastName='',
-        //             $scope.clientID='',
-        //             $scope.email='',
-        //             $scope.street='',
-        //             $scope.city='',
-        //             $scope.state='',
-        //             $scope.zip='',
-        //             $scope.mlsCode='',
-        //             $scope.seller=''
-=======
         $scope.agent='',
                     $scope.street='',
                     $scope.city='',
@@ -142,7 +70,6 @@ propertyApp.controller('ArticlesCreateController', ['$scope','$location', 'Users
                     $scope.zip='',
                     $scope.mlsCode='',
                     $scope.seller=''
->>>>>>> 091f954e70d1e7c1983866ccfa5ca95e52705127
 
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
@@ -200,66 +127,6 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
 	  });
 
     };
-<<<<<<< HEAD
-      this.modalCreate = function (size) {
-
-          var modalInstance = $modal.open({
-              templateUrl: 'modules/articles/client/views/edit-article.client.view.html',
-              controller: function ($scope, $modalInstance) {
-
-
-                  $scope.ok = function (isValid) {
-                      console.log(isValid);
-                      $modalInstance.close();
-                  };
-
-                  $scope.cancel = function () {
-                      $modalInstance.dismiss('cancel');
-                  };
-              },
-              size: size
-          });
-
-          modalInstance.result.then(function (selectedItem) {
-          }, function () {
-              $log.info('Modal dismissed at: ' + new Date());
-          });
-      };
-    //     // Remove existing Article
-    // $scope.remove = function (article) {
-    //   if (article) {
-    //     article.$remove();
-    //
-    //     for (var i in $scope.articles) {
-    //       if ($scope.articles[i] === article) {
-    //         $scope.articles.splice(i, 1);
-    //       }
-    //     }
-    //   } else {
-    //     $scope.article.$remove(function () {
-    //       $location.path('articles');
-    //     });
-    //   }
-    // };
-    //     // Update existing Article
-    // $scope.update = function (isValid) {
-    //   $scope.error = null;
-    //
-    //   if (!isValid) {
-    //     $scope.$broadcast('show-errors-check-validity', 'articleForm');
-    //
-    //     return false;
-    //   }
-    //
-    //   var article = $scope.article;
-    //
-    //   article.$update(function () {
-    //     $location.path('articles/' + article._id);
-    //   }, function (errorResponse) {
-    //     $scope.error = errorResponse.data.message;
-    //   });
-    // };
-=======
         // Remove existing Article
     $scope.remove = function () {
         $scope.article.$remove(function () {
@@ -328,7 +195,6 @@ propertyApp.controller('ArticlesFindOneController', ['$scope', '$state', '$state
     });
 	};
 
->>>>>>> 091f954e70d1e7c1983866ccfa5ca95e52705127
   }]);
 
 

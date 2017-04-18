@@ -1,7 +1,10 @@
 <section>
+  <div class="panel panel-warning" class="Phead">
+    <div class="panel-heading">
   <div class="page-header">
     <h1>User <span ng-bind="user.username"></span></h1>
   </div>
+    </div></div>
   <div class="col-md-12">
     <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
       <fieldset>
@@ -29,7 +32,7 @@
           </div>
         </div>
         <div class="form-group">
-          <input type="submit" value="Update" class="btn btn-default">
+          <input type="submit" value="Update" class="btn btn-warning">
         </div>
         <div ng-show="error" class="text-danger">
           <strong ng-bind="error"></strong>
