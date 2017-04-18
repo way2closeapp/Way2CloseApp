@@ -107,10 +107,6 @@ var ArticleSchema = new Schema({
     required: true,
     unique: false
   },
-  /*buyeragent: [User],
-  selleragent: [User],
-  buyer: [User],
-  seller: [User]*/
   buyeragent: {
     type: Schema.ObjectId,
 	ref: 'User',

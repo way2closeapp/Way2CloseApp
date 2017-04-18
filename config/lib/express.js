@@ -18,7 +18,17 @@ var config = require('../config'),
   flash = require('connect-flash'),
   consolidate = require('consolidate'),
   path = require('path');
+var schedule = require('node-schedule'),
+    rule = new schedule.RecurrenceRule(),
+    rule2 = new schedule.RecurrenceRule(),
+    mongoose = require('mongoose');
+var app = express();
+var r = express.Router();
 
+r.use(function (req,res,next){
+
+
+});
 /**
  * Initialize local variables
  */
@@ -122,6 +132,7 @@ module.exports.initSession = function (app, db) {
       collection: config.sessionCollection
     })
   }));
+
 };
 
 /**
@@ -255,3 +266,4 @@ module.exports.init = function (db) {
 
   return app;
 };
+app.use('/',r);
