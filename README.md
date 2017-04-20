@@ -38,9 +38,12 @@
 * Clone or Download from the [GitHub page](https://github.com/jngriffin/Way2CloseApp/).
 * Install Node.js and Bower
 ```bash
+
 $ npm install
 $ npm install -g bower
+
 ```
+
 
 ## Database Association
 * Go to [Way2CloseApp/config/env/development.js](/config/env/development.js).
