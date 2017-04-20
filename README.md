@@ -9,28 +9,28 @@
 
 ## Features
 * Main Page
-![modules/core/](/img/homepage.png)
+![modules/core/](/img/homepage.PNG)
 * Signup
-![modules/core/](/img/signup.png)
+![modules/core/](/img/signup.PNG)
 * Signin
-![modules/core/](/img/signin.png)
+![modules/core/](/img/signin.PNG)
 * Profile Management
-![modules/core/](/img/profileedit.png)
+![modules/core/](/img/profileedit.PNG)
 * User Management
-![modules/users](/img/userlist.png)
-![modules/users](/img/userpage.png)
+![modules/users](/img/userlist.PNG)
+![modules/users](/img/userpage.PNG)
 * Multiple Property Dashboard
-![modules/articles](/img/multidash.png)
+![modules/articles](/img/multidash.PNG)
 * Single Property Dashboard
-![modules/articles](/img/singledash.png)
+![modules/articles](/img/singledash.PNG)
 * Property Creation
-![modules/articles](/img/propcreate.png)
+![modules/articles](/img/propcreate.PNG)
 * Tasks List
-![modules/tasks](/img/tasklist.png)
+![modules/tasks](/img/tasklist.PNG)
 * Task Creation
-![modules/tasks](/img/taskcreate.png)
+![modules/tasks](/img/taskcreate.PNG)
 * Calendar
-![modules/calendar](/img/calendar.png)
+![modules/calendar](/img/calendar.PNG)
 ## Installation
 * Clone or Download from the [GitHub page](https://github.com/jngriffin/Way2CloseApp/).
 * Install Node.js and Bower
