@@ -3,12 +3,9 @@
 ## Way2Close -- https://way2close.herokuapp.com/
 
 ## Code Used
+* meanjs https://github.com/meanjs/mean
 * meanjs-calendar https://github.com/tonymullen/meanjs-calendar
-* Users-views and controllers https://github.com/jngriffin/Way2CloseApp/tree/master/modules/users
-* Properties views and controllers https://github.com/jngriffin/Way2CloseApp/tree/master/modules/articles
-* Task view and creation https://github.com/jngriffin/Way2CloseApp/tree/master/modules/tasks
-* Account creation for new clients and email notification https://github.com/jngriffin/Way2CloseApp/blob/master/modules/articles/server/controllers/articles.server.controller.js
-
+* 
 
 ## Features
 * Main Page
