@@ -6,6 +6,11 @@ input.eventtext {
   width: 140px
 }
 
+.cal-frame{
+  width: 90%;
+  margin: auto;
+}
+
 .fc-event {
   border: 1px solid #dd3824;
   background-color: darkorange;

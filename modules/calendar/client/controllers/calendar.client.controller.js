@@ -8,9 +8,9 @@
 /*
 Here are the dependency injections for this controller. CalendarService is the service defined in this module. This will create new calendar event resources when we add new events. Authentication holds onto information about whether the user is logged in. We'll use this information in the view to decide what to display and what not to display, so we want to attach it to the model here in the controller.
 */
-  CalendarController.$inject = ['CalendarService', 'Authentication', '$scope', '$http', 'PTasksService'];
+  CalendarController.$inject = ['CalendarService', 'Authentication', '$scope', '$stateParams', '$http', 'PTasksService'];
 
-  function CalendarController(CalendarService, Authentication, $scope, $http, PTasksService) {
+  function CalendarController(CalendarService, Authentication, $scope, $stateParams, $http, PTasksService) {
 
     var vm = this;
 
@@ -42,6 +42,7 @@ Here are the dependency injections for this controller. CalendarService is the s
 
     vm.alertOnEventClick = function(date, jsEvent, view) {
       vm.alertMessage = (date.title + ' was clicked ');
+        document.location.href = date.user + '/tasks/' + date._id;
     };
 
     /* The function called when a day is clicked */
@@ -194,8 +195,11 @@ Here are the dependency injections for this controller. CalendarService is the s
             var completed;
             if(data[i].complete){completed = 'completed';}
             else{completed = 'incomplete';}
-            var address = data[i].property.street + ', ' + data[i].property.city + ', ' + data[i].property.state
-              + ' ' + data[i].property.zip;
+            /*console.log(data[i].property);
+            $scope.data = {id: $stateParams.articleId};
+            var address = $http.get('api/articles/'+$scope.data.id, $scope.data, $scope.config).
+            success(function(address, status, headers, config) {return data;});
+            console.log(address);*/
             //Adapted sample event creation from vm.addEvent
             var newEvent = new CalendarService({
               created: data[i].created,
@@ -203,14 +207,15 @@ Here are the dependency injections for this controller. CalendarService is the s
               type: completed,
               start: data[i].due,
               user: data[i].user,
-              className: [address]
+              /*className: address.street + ', ' + address.city + ', ' + address.state
+              + ' ' + address.zip*/
             });
             //Pushes events to calendar source without saving to db
-            /*newEvent.$save(function(task) {
-              newEvent._id = task._id;*/
+            //newEvent.$save(function(task) {
+              newEvent._id = data[i]._id;
               vm.calTasks.push(newEvent);
               vm.setCustomInds(vm.calTasks);
-            /*});*/
+            //});
           }
         }).
           error(function(data, status, headers, config) {
