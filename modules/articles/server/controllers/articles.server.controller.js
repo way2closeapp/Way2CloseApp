@@ -212,8 +212,6 @@ var schedule = require('node-schedule'),
 
 
 
-
-
  rule.dayOfWeek = [0, new schedule.Range(2, 6)];
 
  rule.hour = 5;
