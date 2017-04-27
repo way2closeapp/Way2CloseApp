@@ -298,7 +298,7 @@ schedule.scheduleJob(rule, function(){
 
                                 from: "way2closeapp@gmail.com",
 
-                                to: "patrickgourdet79@gmail.com",
+                                to: userEmail,
 
                                 subject: 'Upcoming task from Way2Close',
 
