@@ -29,15 +29,23 @@
             <p class="help-block error-text" ng-message="required">Email is required.</p>
           </div>
         </div>
+
         <div class="form-group" show-errors>
-          <label class="control-label" for="roles">Roles</label>
-          <div class="controls">
+
+       <!--   <div class="controls">
             <input class="form-control" type="text" name="roles" ng-model="user.roles" id="roles" ng-list required />
             <div ng-messages="userForm.roles.$error" role="alert">
               <p class="help-block error-text" ng-message="required">At least one role is required.</p>
             </div>
-          </div>
-        </div>
+          </div>-->
+        <label class="control-label" for="roles">Roles</label>
+
+          <select name="roles" ng-model="user.roles" id="roles" class="form-control">
+          <option value="admin">Agent Admin</option>
+          <option value="user">Client User</option>
+          </select>
+  </div>
+
         <div class="form-group">
           <input type="submit" value="Update" class="btn btn-warning">
         </div>

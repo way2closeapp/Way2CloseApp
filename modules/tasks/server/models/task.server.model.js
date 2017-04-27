@@ -45,7 +45,7 @@ var TaskSchema = new Schema({
   },
   complete: {
 	  type: Boolean,
-	  default: false
+	  default: true
   }
 });
 
