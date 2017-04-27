@@ -273,7 +273,6 @@ schedule.scheduleJob(rule, function(){
                     })
 
                             console.log(userEmail+" "+propertyAddress+ " " + taskName);
-
                             var passage = "<!DOCTYPE html><html lang='en-US'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head>" +
 
                                 "<body><h3>Hello!</h3>" +
