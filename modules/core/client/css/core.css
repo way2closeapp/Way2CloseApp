@@ -41,7 +41,7 @@ a:hover .header-profile-image {
   color: #A00000;
 }
 .bg-setting{
-  background-color: #83756f;
+  background-color: #f0ad4e;
   border-radius: 15px;
   border-bottom-width: thick;
   border-color: #A00000;
@@ -87,7 +87,7 @@ p {
 
 }
 .panelCust{
-    box-shadow: 4px 4px #f0ad4e;
+    color: #f0ad4e;
 }
 
 .pad{

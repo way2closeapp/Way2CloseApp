@@ -28,9 +28,18 @@ angular.module('users.admin').controller('UserController', ['$scope', '$state', 
 
       var user = $scope.user;
 
-      user.$update(function () {
+        var roll;
+
+        if($scope.roles == "admin") {
+            roll = "[admin]";
+        } else {
+            roll ="[user]";
+        }
+
+        user.$update(function () {
         $state.go('admin.user', {
-          userId: user._id
+          userId: user._id,
+          roles: roll
         });
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
